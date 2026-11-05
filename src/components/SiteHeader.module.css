@@ -1,0 +1,36 @@
+.bar {
+  position: fixed; inset: 0 0 auto; z-index: 50; height: 88px; padding: 0 4.5vw; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  transition: background-color 0.35s, box-shadow 0.35s, height 0.35s var(--ease-out);
+}
+.bar[data-solid] { height: 72px; background: rgba(10, 10, 10, 0.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.logo { display: block; width: clamp(120px, 10vw, 150px); min-height: 44px; display: grid; align-items: center; }
+.logo img { width: 100%; height: auto; filter: brightness(0) invert(1); }
+
+.nav {
+  position: absolute; left: 50%; translate: -50% 0; display: flex; gap: clamp(22px, 2.6vw, 44px); height: 46px; padding: 0 30px; align-items: center;
+  border-radius: 14px; background: #0f0f10; border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.nav a { position: relative; color: #fff; font-size: 15.5px; line-height: 46px; white-space: nowrap; }
+.nav a::after { content: ''; position: absolute; right: 0; left: 0; bottom: 10px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.3s cubic-bezier(.2, .8, .2, 1); }
+.nav a:hover::after, .nav a[aria-current='page']::after { transform: scaleX(1); }
+
+.contact {
+  display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 14px; background: #0f0f10; color: #fff; font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.08); transition: background-color 0.2s;
+}
+.contact:hover { background: #262626; }
+
+.toggle { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: #0f0f10; color: #fff; place-items: center; cursor: pointer; }
+.sheet { display: none; }
+
+@media (max-width: 900px) {
+  .nav, .contact { display: none; }
+  .toggle { display: grid; }
+  .sheet:not([hidden]) {
+    display: grid; position: absolute; top: 100%; right: 0; left: 0; padding: 12px var(--gutter) 24px; gap: 4px;
+    background: rgba(10, 10, 10, 0.96); border-bottom: 1px solid var(--line);
+  }
+  .sheet a { min-height: 48px; display: flex; align-items: center; font-size: 18px; color: var(--paper); border-bottom: 1px solid var(--line); }
+  .sheet a[dir='ltr'] { justify-content: flex-end; color: var(--mute); border: 0; }
+  .bar[data-open] { background: rgba(10, 10, 10, 0.96); }
+}

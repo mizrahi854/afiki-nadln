@@ -1,0 +1,30 @@
+/* Text and utility pages: the header clears 4.25vw, then Emerald's intro grid (title frame right, text left). */
+.top { padding-top: 9vw; }
+.lede { margin: 1.6vw auto 0; max-width: 40vw; text-align: center; font-size: 1.5vw; }
+.tiles { list-style: none; margin: 3.4vw 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4vw; }
+.tiles li { --c: polygon(0% 14%, 6% 0%, 94% 0%, 100% 14%, 100% 86%, 94% 100%, 6% 100%, 0% 86%); }
+.tiles a, .tiles div { display: grid; justify-items: center; gap: 0.5vw; padding: 2vw 1vw; text-align: center; font-size: 1.4vw; }
+.tiles svg { width: 2vw; height: 2vw; }
+.tiles b { font-size: 1.6vw; }
+.tiles a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+.intro { display: grid; grid-template-columns: 34vw minmax(0, 53vw); justify-content: space-between; align-items: start; padding: 0 0 6vw; }
+.side { position: sticky; top: 7vw; display: grid; gap: 1.4vw; }
+.meta { font-size: 1.3vw; color: var(--ink-2); }
+.meta a { text-decoration: underline; text-underline-offset: 3px; }
+.hero { width: 100%; height: 35vw; object-fit: cover; margin-top: -0.5vw; }
+.more { padding: 0 0 6vw; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4vw 2vw; margin-top: 3vw; }
+@media (max-width: 1024px) {
+  .top { padding-top: 96px; }
+  .lede { max-width: none; font-size: 18px; margin-top: 14px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+  .tiles a, .tiles div { padding: 20px 10px; gap: 6px; font-size: 16px; min-height: 44px; }
+  .tiles svg { width: 22px; height: 22px; }
+  .tiles b { font-size: 16px; word-break: break-word; }
+  .intro { grid-template-columns: 1fr; gap: 24px; padding-bottom: 48px; }
+  .side { position: static; gap: 12px; }
+  .meta { font-size: 15px; }
+  .hero { height: 56vw; margin-top: 0; }
+  .more { padding-bottom: 56px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+}

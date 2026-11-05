@@ -1,0 +1,35 @@
+/* Cyprus page: story split (about-style title), six numbered octagons, gallery strip. */
+.story { padding-top: 6vw; }
+.text { padding-right: 5vw; display: grid; justify-items: start; gap: 1.6vw; }
+.title { margin: 0; display: grid; font-weight: 400; }
+.lead { display: flex; align-items: center; gap: 1.2vw; font-size: 4.2vw; font-weight: 300; line-height: 1; }
+.lead > span { order: 2; width: 6vw; height: 1px; background: var(--ink); }
+.lead > i { order: 3; margin-inline-start: -1.2vw; }
+.title strong { font-size: 5.6vw; font-weight: 700; line-height: 0.95; }
+.actions { display: flex; flex-wrap: wrap; gap: 1vw; }
+.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+
+.services { padding: 2vw 0 6vw; }
+.services ol { list-style: none; margin: 3vw 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4vw; }
+.services li { min-height: 9vw; padding: 1.6vw 2vw; display: grid; align-content: center; gap: 0.6vw; }
+.services b { font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 2.6vw; line-height: 1; }
+.services span { font-size: var(--fs-h3); font-weight: 700; line-height: 1.15; }
+
+.gallery { padding-bottom: 5vw; display: grid; gap: 3vw; }
+
+@media (max-width: 1024px) {
+  .story { padding-top: 48px; }
+  .text { padding: 0 20px; gap: 16px; }
+  .lead { font-size: 40px; gap: 12px; }
+  .lead > span { width: 40px; }
+  .lead > i { margin-inline-start: -12px; }
+  .title strong { font-size: 50px; }
+  .actions { flex-direction: column; align-items: stretch; width: 100%; gap: 10px; }
+  .actions a { justify-content: center; }
+  .services { padding: 16px 0 48px; }
+  .services ol { grid-template-columns: 1fr; gap: 10px; margin-top: 28px; }
+  .services li { min-height: 0; padding: 18px 22px; grid-template-columns: 48px 1fr; align-items: center; --c: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px)); }
+  .services b { font-size: 28px; }
+  .services span { font-size: 20px; }
+  .gallery { padding-bottom: 40px; gap: 24px; }
+}

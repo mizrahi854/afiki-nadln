@@ -1,0 +1,48 @@
+/* Grid measured @1440: 3 columns, column gap 2vw (28.8px), row gap 20px (1.4vw). */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4vw 2vw; }
+
+/* Filter row (adaptation, no Emerald counterpart): Emerald's nav treatment for the type switch,
+   1px underlined fields in the body size. */
+.bar { display: flex; align-items: flex-end; gap: 2vw; padding: 1.4vw 0 1vw; border-bottom: 1px solid var(--rule); }
+.kinds { display: flex; gap: 1.8vw; margin-inline-end: auto; }
+.kinds button {
+  background: none; border: 0; padding: 0.4vw 0; cursor: pointer; font-family: inherit; font-stretch: 62.5%;
+  font-size: var(--fs-btn); color: var(--ink); opacity: 0.5; transition: opacity 0.5s, letter-spacing 0.5s, -webkit-text-stroke 0.5s;
+}
+.kinds button:hover, .kinds button[aria-checked='true'] { opacity: 1; letter-spacing: 0.02em; -webkit-text-stroke: 0.8px currentColor; }
+.field { position: relative; display: flex; align-items: center; border-bottom: 1px solid var(--ink); }
+.field select, .field input {
+  appearance: none; background: none; border: 0; padding: 0.4vw 0 0.4vw 1.4vw; font-family: inherit; font-stretch: 62.5%;
+  font-size: var(--fs-btn); color: var(--ink); min-width: 10vw; cursor: pointer;
+}
+.field:not(.text)::after { content: ''; position: absolute; left: 0.2vw; top: 45%; width: 0.45vw; height: 0.45vw; border: solid var(--ink); border-width: 0 1px 1px 0; transform: translateY(-50%) rotate(45deg); pointer-events: none; }
+.text input { min-width: 22vw; cursor: text; padding-left: 2vw; }
+.text input::placeholder { color: var(--ink-3); }
+.text button { position: absolute; left: 0; background: none; border: 0; padding: 0; color: var(--ink); cursor: pointer; display: grid; }
+.text svg { width: 1.3vw; height: 1.3vw; }
+.meta { display: flex; justify-content: space-between; align-items: center; padding: 1vw 0 1.4vw; font-size: var(--fs-small); color: var(--ink-2); }
+.meta p { margin: 0; }
+.meta button { display: inline-flex; align-items: center; gap: 0.4vw; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.meta svg { width: 1vw; height: 1vw; }
+.empty { padding: 6vw 0; text-align: center; }
+.empty p { margin: 0 0 0.6vw; }
+.empty p:first-child { font-size: var(--fs-h3); font-weight: 700; }
+.empty button { margin-top: 1.4vw; background: var(--brand); color: #fff; border: 0; padding: 1vw 1.6vw; font: inherit; font-weight: 700; cursor: pointer; }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .bar { flex-wrap: wrap; gap: 14px 20px; padding: 16px 0 14px; }
+  .kinds { width: 100%; overflow-x: auto; gap: 18px; scrollbar-width: none; }
+  .kinds button { padding: 10px 0; white-space: nowrap; }
+  .field { flex: 1 1 140px; }
+  .field select, .field input { min-width: 0; width: 100%; padding: 10px 0 10px 22px; }
+  .field:not(.text)::after { width: 7px; height: 7px; left: 4px; }
+  .text { flex-basis: 100%; }
+  .text svg { width: 18px; height: 18px; }
+  .meta { padding: 12px 0 18px; }
+  .meta svg { width: 14px; height: 14px; }
+  .meta button { min-height: 44px; }
+  .empty { padding: 56px 0; }
+  .empty button { padding: 14px 22px; }
+}
+@media (max-width: 767px) { .grid { grid-template-columns: 1fr; } }

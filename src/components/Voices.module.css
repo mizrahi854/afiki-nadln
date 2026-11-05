@@ -1,0 +1,53 @@
+/* AEVUM reviews block: header row (two-tone title, short note opposite), then a white quote card (~45%)
+   beside a large photo with the people row on its lower corner. Same widths and radius language as the
+   collection grid above. Mirrored for RTL: card on the right, people row bottom-left. */
+.section { background: var(--night); color: var(--paper); padding: clamp(72px, 7vw, 120px) 4.5vw 0; }
+
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: clamp(24px, 2.6vw, 40px); }
+.eyebrow { margin: 0 0 clamp(14px, 1.3vw, 20px); font-size: 11px; letter-spacing: 0.16em; color: var(--faint); }
+.title { margin: 0; font-size: clamp(28px, 2.6vw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -0.015em; }
+.title span { color: var(--faint); font-weight: 400; }
+.note { margin: 0; max-width: 24em; font-size: 13.5px; line-height: 1.6; color: var(--mute); }
+
+.grid { display: grid; grid-template-columns: 316fr 380fr; gap: clamp(8px, 0.75vw, 12px); }
+
+.card {
+  margin: 0; background: #f4f3f0; color: #111; border-radius: clamp(12px, 1.15vw, 18px); padding: clamp(22px, 2.2vw, 36px);
+  display: flex; flex-direction: column; min-height: clamp(360px, 31vw, 500px);
+}
+.cardTop { display: flex; align-items: center; justify-content: space-between; }
+.tag { height: 24px; padding: 0 11px; border-radius: 12px; background: #111; color: #f4f3f0; font-size: 11px; font-weight: 500; line-height: 24px; letter-spacing: 0.02em; }
+.count { font-size: 12px; color: #77746d; direction: ltr; font-variant-numeric: tabular-nums; }
+.mark { margin-top: clamp(22px, 2.4vw, 40px); color: #b9b6ae; transform: scaleX(-1); }
+.quote { margin: 14px 0 0; font-size: clamp(20px, 1.75vw, 29px); font-weight: 400; line-height: 1.32; letter-spacing: -0.01em; max-width: 21em; animation: in 0.7s var(--ease-out) both; }
+@keyframes in { from { opacity: 0; transform: translateY(12px); } }
+.who { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 12px; }
+.who b { display: block; font-size: 14.5px; font-weight: 500; }
+.who small { display: block; font-size: 12px; color: #77746d; margin-top: 2px; }
+.initial { width: 38px; height: 38px; border-radius: 50%; background: #1c1c1c; color: #f4f3f0; display: grid; place-items: center; font-size: 15px; }
+.progress { position: relative; display: block; height: 2px; margin-top: 20px; background: rgba(0, 0, 0, 0.1); overflow: hidden; }
+.progress i { position: absolute; inset: 0; background: #111; transform-origin: right; transform: scaleX(0); }
+.progress i[data-run] { animation: fill linear forwards; }
+@keyframes fill { to { transform: scaleX(1); } }
+
+.photo { position: relative; border-radius: clamp(12px, 1.15vw, 18px); overflow: hidden; min-height: 320px; background: var(--deep); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.people { position: absolute; left: 16px; bottom: 16px; display: flex; }
+.people button {
+  width: 44px; height: 44px; margin-inline-start: -8px; border-radius: 50%; border: 2px solid #f4f3f0; background: #1c1c1c; color: #f4f3f0;
+  font-size: 15px; cursor: pointer; transition: transform 0.25s var(--ease-out), background-color 0.2s;
+}
+.people button:first-child { margin-inline-start: 0; }
+.people button:hover { transform: translateY(-3px); }
+.people button[aria-selected='true'] { background: #f4f3f0; color: #111; }
+
+@media (max-width: 1024px) {
+  .section { padding-inline: var(--gutter); }
+  .head { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { min-height: 0; }
+  .photo { aspect-ratio: 4 / 3; min-height: 0; order: -1; }
+}
+@media (prefers-reduced-motion: reduce) { .progress { display: none; } }

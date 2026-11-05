@@ -1,0 +1,75 @@
+/* Geometry measured from the Emerald projects grid (2000px capture): 4.3vw side margins, ~2.4vw gutters,
+   photo 415 + info bar 66 on a 1985 viewport. Row A (visual, left → right): card 502 · card 805 · title 407.
+   Row B: 653 · 502 · 558. Light version like the inner pages: white section, the bar is the neutral light glass. */
+.section { background: var(--bg); color: var(--ink); padding: clamp(72px, 7.5vw, 128px) 4.3vw clamp(64px, 6vw, 104px); --gap: 2.4vw; --img: 20.9vw; --bar: max(54px, 3.32vw); }
+.rowA, .rowB { display: grid; gap: var(--gap); }
+.rowA { grid-template-columns: 407fr 805fr 502fr; align-items: center; }
+.rowB { grid-template-columns: 558fr 502fr 653fr; margin-top: var(--gap); }
+
+/* two lines at the same size, like "• OUR / PROJECTS": a hairline ending in a diamond leads into the first word */
+.title { margin: 0; display: grid; justify-items: start; font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 4.6vw, 88px); line-height: 1; letter-spacing: -0.01em; color: var(--ink); }
+.first { display: inline-flex; align-items: center; gap: 0.3em; }
+.first i { display: block; width: 2.1em; height: 1px; background: currentColor; position: relative; opacity: 0.55; }
+.first i::before { content: ''; position: absolute; right: -0.02em; top: 50%; width: 0.15em; height: 0.15em; background: var(--ink); transform: translate(50%, -50%) rotate(45deg); }
+
+.card { position: relative; display: block; height: calc(var(--img) + var(--bar)); overflow: hidden; background: #e9ecee; isolation: isolate; }
+.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease, transform 1.2s var(--ease-out); }
+.veil { position: absolute; inset: 0; background: rgba(23, 48, 62, 0.28); opacity: 0; transition: opacity 0.5s ease; }
+.mark {
+  position: absolute; left: 50%; top: calc((100% - var(--bar)) / 2); width: clamp(54px, 4.4vw, 76px); aspect-ratio: 1; display: grid; place-items: center;
+  translate: -50% -50%; color: var(--ink); opacity: 0; scale: 0.86; transition: opacity 0.5s ease, scale 0.6s var(--ease-out);
+}
+.mark::before { content: ''; position: absolute; inset: 14%; border: 1px solid var(--ink); background: rgba(255, 255, 255, 0.88); transform: rotate(45deg); }
+.mark svg { position: relative; }
+
+/* info bar: light glass over the photo's lower edge; the description opens upward inside it */
+.bar {
+  position: absolute; right: 0; left: 0; bottom: 0; min-height: var(--bar); padding: 0 clamp(16px, 1.1vw, 22px);
+  display: grid; align-content: end;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+}
+.top { height: var(--bar); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.name { font-size: clamp(17px, 1.3vw, 25px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.city { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(14px, 1.05vw, 20px); font-weight: 300; color: var(--ink-2); }
+.line { order: 2; display: block; max-height: 0; overflow: hidden; opacity: 0; transition: opacity 0.5s ease, max-height 1s var(--ease-out); }
+.line span { display: block; margin-top: -6px; padding-bottom: 14px; font-size: clamp(13px, 0.9vw, 15px); line-height: 1.5; color: var(--ink-2); }
+
+@media (hover: hover) {
+  .card:hover img { filter: blur(4px); transform: scale(1.04); }
+  .card:hover .veil, .card:hover .mark, .card:hover .line { opacity: 1; }
+  .card:hover .mark { scale: 1; }
+  .card:hover .line { max-height: 5em; }
+}
+.card:focus-visible .veil, .card:focus-visible .mark, .card:focus-visible .line { opacity: 1; }
+.card:focus-visible .line { max-height: 5em; }
+
+.all {
+  display: flex; align-items: center; gap: 10px; width: max-content; margin: clamp(40px, 3.6vw, 64px) auto 0; height: 46px; padding: 0 22px;
+  background: var(--brand); color: var(--on-brand); font-size: var(--fs-btn); font-weight: 700; transition: background-color 0.3s;
+  clip-path: polygon(0.75vw 0, calc(100% - 0.75vw) 0, 100% 0.75vw, 100% calc(100% - 0.75vw), calc(100% - 0.75vw) 100%, 0.75vw 100%, 0 calc(100% - 0.75vw), 0 0.75vw);
+}
+.all:hover { background: var(--brand-2); }
+.all svg { transition: transform 0.3s var(--ease-out); }
+.all:hover svg { transform: translateX(-4px); }
+
+@media (max-width: 1024px) {
+  .section { --gap: 16px; --img: 34vw; padding-inline: var(--gutter); }
+  .rowA { grid-template-columns: 1fr 1fr; }
+  .title { grid-column: 1 / -1; margin-bottom: 8px; }
+  .rowB { grid-template-columns: 1fr 1fr; }
+  .rowB > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .section { --img: 62vw; }
+  .rowA, .rowB { grid-template-columns: 1fr; }
+  .mark { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card img, .mark, .line { transition: none; }
+}
+
+/* on the home page this section follows the pinned flight and slides up over its last screen */
+@media (prefers-reduced-motion: no-preference) {
+  .overlap { position: relative; z-index: 2; margin-top: -100vh; margin-top: -100svh; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.35); }
+}

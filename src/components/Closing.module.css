@@ -1,0 +1,65 @@
+/* AEVUM ending: black, a centered two-tone line with a small ring, body and a hairline link; the house photo
+   surfaces from the dark toward the bottom; a smoked rounded footer panel over it; the brand name centered
+   at the bottom in large white type. */
+.wrap { position: relative; isolation: isolate; overflow: hidden; background: var(--night); color: var(--paper); padding-bottom: clamp(18px, 2vw, 32px); }
+
+.bg { position: absolute; inset: 22% 0 0; z-index: -1; }
+.bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: grayscale(0.3) brightness(0.48) contrast(1.08);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.22) 30%, rgba(0, 0, 0, 0.7) 68%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.22) 30%, rgba(0, 0, 0, 0.7) 68%, #000 100%);
+}
+
+.cta { display: grid; justify-items: center; text-align: center; padding: clamp(120px, 12vw, 210px) var(--gutter) clamp(110px, 11vw, 190px); }
+.eyebrow { margin: 0 0 18px; font-size: 11px; letter-spacing: 0.18em; color: var(--faint); }
+.title { margin: 0; font-size: clamp(30px, 2.8vw, 48px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
+.title span { color: var(--faint); font-weight: 400; }
+.dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--mute); margin: 20px 0 16px; display: block; }
+.body { margin: 0; max-width: 31em; font-size: clamp(14.5px, 1vw, 16px); line-height: 1.65; color: var(--mute); }
+.link { margin-top: 34px; display: inline-flex; align-items: center; gap: 14px; min-height: 44px; font-size: 12.5px; letter-spacing: 0.14em; font-weight: 500; }
+.link i { width: 34px; height: 1px; background: currentColor; transform-origin: right; transition: transform 0.35s var(--ease-out); }
+.link:hover i { transform: scaleX(1.7); }
+
+.panel {
+  margin: 0 4.5vw; padding: clamp(28px, 2.8vw, 44px) clamp(24px, 2.8vw, 44px) clamp(22px, 2vw, 30px);
+  display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.7fr) minmax(0, 0.9fr); gap: 32px clamp(32px, 4vw, 72px);
+  border-radius: clamp(12px, 1.15vw, 18px); background: rgba(14, 14, 14, 0.72); border: 1px solid rgba(243, 242, 239, 0.07);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.lead { display: grid; align-content: start; gap: 12px; }
+.panelTitle { margin: 0; font-size: clamp(24px, 2vw, 34px); font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; }
+.panelText { margin: 0; max-width: 28em; font-size: 13.5px; line-height: 1.6; color: var(--mute); }
+.legal { margin: 18px 0 0; font-size: 12px; color: var(--faint); }
+.col { display: grid; align-content: start; gap: 9px; font-size: 13.5px; color: var(--mute); }
+.col p { margin: 0 0 6px; font-size: 13px; color: var(--paper); font-weight: 500; }
+.col a { display: inline-flex; align-items: center; gap: 8px; width: max-content; transition: color 0.2s; }
+.col a:hover { color: var(--paper); }
+.muted { color: var(--faint); }
+
+/* the name: centered, rising letter by letter (yPercent set in Closing.tsx) out of a clipped line */
+.word { width: min(46vw, 760px); margin: clamp(26px, 3vw, 48px) auto 0; overflow: hidden; }
+.wordInner { display: block; width: max-content; margin: 0 auto; white-space: nowrap; line-height: 0.92; font-weight: 700; color: #fff; padding-bottom: 0.04em; }
+.wordInner span { display: inline-block; will-change: transform; }
+.wordInner .space { white-space: pre; }
+
+.up {
+  position: fixed; left: 50%; bottom: 18px; z-index: 40; translate: -50% 0; width: 52px; height: 34px; border: 0; border-radius: 10px;
+  display: grid; place-items: center; background: rgba(243, 242, 239, 0.92); color: #111; cursor: pointer;
+  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.5);
+  opacity: 0; pointer-events: none; transform: translateY(10px);
+  transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-out), background-color 0.2s;
+}
+.up[data-on] { opacity: 1; pointer-events: auto; transform: none; }
+.up:hover { background: #fff; }
+.up:hover svg { transform: translateY(-2px); }
+.up svg { transition: transform 0.25s var(--ease-out); }
+
+@media (max-width: 860px) {
+  .panel { grid-template-columns: 1fr 1fr; margin-inline: var(--gutter); }
+  .lead { grid-column: 1 / -1; }
+  .word { width: calc(100vw - 2 * var(--gutter)); }
+}
+@media (max-width: 480px) {
+  .panel { grid-template-columns: 1fr; }
+  .bg { top: 35%; }
+}

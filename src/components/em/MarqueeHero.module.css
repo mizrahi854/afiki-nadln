@@ -1,0 +1,49 @@
+/* Measured @1440 (our-projects): block 766px from under the header; centre column 504px (35vw);
+   H1 144px/144 (10vw) regular + second line 194px (13.5vw) bold; diamonds 2vw beside line one;
+   text 21.6px (1.5vw) / 1.2 in 490px; photo columns 366px wide (25.4vw), square photos with 3px inset,
+   left column at −10px, right column flush right. */
+.hero { position: relative; overflow: hidden; height: 53.2vw; min-height: 640px; }
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 52%, var(--bg) 100%);
+}
+.col { position: absolute; top: 0; bottom: 0; width: 25.4vw; overflow: hidden; }
+.left { left: -0.7vw; }
+.right { right: 0; }
+.track { display: flex; flex-direction: column; animation: up calc(var(--n) * 6s) linear infinite; }
+.track[data-dir='down'] { animation-name: down; }
+.col:hover .track { animation-play-state: paused; }
+.track img { width: 25vw; height: 25vw; margin: 0.21vw 0.21vw 1.25vw; object-fit: cover; }
+@keyframes up { to { transform: translateY(-50%); } }
+@keyframes down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+
+.center { position: relative; z-index: 2; width: 35vw; margin: 0 auto; padding-top: 10vw; text-align: center; }
+.title { margin: 0; font-weight: 400; color: var(--ink); }
+.lead { display: inline-flex; align-items: center; gap: 2.4vw; font-size: 10vw; font-weight: 300; line-height: 0.75; }
+.lead i { width: 1.5vw; height: 1.5vw; }
+.big { display: block; font-size: 13.5vw; font-weight: 700; line-height: 10vw; margin-top: 1.4vw; }
+.text { margin-top: 2.8vw; font-size: 1.5vw; line-height: 1.2; }
+.text p { margin: 0 0 1vw; }
+.text b { font-weight: 700; }
+
+.strip { display: none; }
+
+@media (max-width: 1024px) {
+  .hero { height: auto; min-height: 0; padding-bottom: 56px; }
+  .col { display: none; }
+  .hero::after { display: none; }
+  /* Phones: one strip 298px tall, 950px long, tilted −5°, starting 60px from the top */
+  .strip { display: block; position: relative; height: 300px; margin-top: 56px; overflow: hidden; }
+  .stripTrack { position: absolute; top: 4px; right: -60px; display: flex; gap: 14px; rotate: -5deg; animation: side calc(var(--n) * 6s) linear infinite; }
+  .stripTrack img { width: 280px; height: 280px; object-fit: cover; flex: none; }
+  .center { width: auto; padding: 0 20px; }
+  .lead { font-size: 72px; gap: 22px; line-height: 0.9; }
+  .lead i { width: 12px; height: 12px; }
+  .big { font-size: 100px; line-height: 0.95; }
+  .text { margin-top: 28px; font-size: 20px; }
+  .text p { margin-bottom: 14px; }
+}
+@keyframes side { to { transform: translateX(50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .track, .stripTrack { animation: none; }
+}

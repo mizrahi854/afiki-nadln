@@ -1,0 +1,80 @@
+/* Pinned flight. 560vh of scroll: the flight runs over all but the last screen, where the next section
+   (Hoods, pulled up by one screen) slides over the still-pinned stage — as in the reference video. */
+.scene { position: relative; height: 560vh; background: var(--night); color: var(--paper); }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+
+.views { position: absolute; inset: 0; }
+.view { position: absolute; inset: 0; will-change: transform, opacity; }
+.view img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.82) contrast(1.06); }
+
+.night { position: absolute; inset: 0; background: #000; opacity: 0.4; }
+.vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.45) 0%, rgba(10, 10, 10, 0) 22%, rgba(10, 10, 10, 0) 70%, rgba(10, 10, 10, 0.85) 100%),
+    radial-gradient(120% 90% at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.eyebrow { margin: 0; font-size: 11px; letter-spacing: 0.16em; color: var(--mute); }
+
+/* opening view: the name over the sky of the first photo, the glass bar along its lower edge */
+.intro { position: absolute; top: max(78px, 9.5vh); right: 5vw; left: 5vw; display: grid; justify-items: center; gap: 0.6vw; text-align: center; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3); }
+.kick { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: clamp(24px, 2.5vw, 44px); line-height: 1; color: #fff; }
+.nameRow { display: flex; align-items: center; justify-content: center; gap: 1.6vw; width: 100%; }
+.nameRow > span { flex: 0 1 9vw; height: 1px; background: rgba(255, 255, 255, 0.8); }
+.nameRow > i { width: 0.8vw; height: 0.8vw; min-width: 8px; min-height: 8px; background: #fff; transform: rotate(45deg); flex: none; }
+.name { margin: 0; font-weight: 700; font-size: clamp(56px, 7.6vw, 140px); line-height: 0.95; color: #fff; white-space: nowrap; }
+.glass {
+  position: absolute; right: 5vw; left: 5vw; bottom: 76px; margin: 0; min-height: max(54px, 3.6vw); padding: 0 1.6vw;
+  display: flex; align-items: center; justify-content: space-between; gap: 2vw;
+  background: var(--glass); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); color: var(--ink);
+  font-size: clamp(16px, 1.3vw, 22px);
+}
+.glass span:first-child { font-weight: 700; }
+.glass span:last-child { font-weight: 300; white-space: nowrap; }
+
+/* one short centered line through the flight */
+.mid {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(92vw, 34em); margin: 0; text-align: center;
+  font-size: clamp(15px, 1.15vw, 19px); line-height: 1.6; color: rgba(255, 255, 255, 0.88);
+}
+
+.end { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(92vw, 640px); display: grid; justify-items: center; gap: 18px; text-align: center; }
+.heading { margin: 0; font-size: clamp(30px, 2.8vw, 48px); font-weight: 500; line-height: 1.12; letter-spacing: -0.02em; }
+.heading span { color: var(--faint); font-weight: 400; }
+.body { margin: 0; max-width: 31em; font-size: clamp(14.5px, 1vw, 16px); line-height: 1.65; color: var(--mute); }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+.primary, .ghost { height: 48px; padding: 0 24px; border-radius: 12px; display: inline-flex; align-items: center; gap: 12px; font-size: 15px; transition: background-color 0.2s, border-color 0.2s, color 0.2s; }
+.primary { background: var(--paper); color: #0a0a0a; font-weight: 500; }
+.primary svg { transition: transform 0.3s var(--ease-out); }
+.primary:hover { background: #fff; }
+.primary:hover svg { transform: translateX(-4px); }
+.ghost { border: 1px solid rgba(243, 242, 239, 0.3); color: var(--paper); }
+.ghost:hover { border-color: var(--paper); }
+
+.foot {
+  position: absolute; left: 4.5vw; right: 4.5vw; bottom: 26px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px;
+  font-size: 11px; letter-spacing: 0.12em; color: var(--mute);
+}
+.foot [data-s='count'] { direction: ltr; font-variant-numeric: tabular-nums; }
+.track { position: relative; height: 1px; background: var(--line); }
+.track i { position: absolute; inset: 0; background: var(--paper); transform-origin: right; transform: scaleX(0); }
+
+@media (max-width: 768px) {
+  .scene { height: 480vh; }
+  .intro { top: 96px; gap: 12px; }
+  .nameRow { gap: 10px; }
+  .nameRow > span { flex-basis: 28px; }
+  .name { font-size: 15vw; }
+  .glass { right: 16px; left: 16px; bottom: 64px; padding: 10px 14px; font-size: 15px; }
+  .foot { grid-template-columns: auto 1fr; }
+  .foot > span:last-child { display: none; }
+  .primary, .ghost { flex: 1 1 auto; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene { height: auto; }
+  .stage { position: relative; }
+  .view:not(:last-child), .intro, .glass, .mid, .foot { display: none; }
+  .night { opacity: 0.62; }
+}

@@ -1,0 +1,139 @@
+/*
+ * Inner pages, built to emeraldltd.co.il's measured layout (1440px viewport → vw values below), light version:
+ * white surfaces, dark text, neutral glass bars. Emerald's green is replaced by the petrol sampled from the
+ * original Afikey logo (#17303e).
+ * Desktop sizes are in vw like the source (1vw = 14.4px at 1440). Below 1025px the source switches to fixed px.
+ */
+.page {
+  --bg: #ffffff;
+  --ink: #17303e;
+  --ink-2: rgba(23, 48, 62, 0.72);
+  --ink-3: rgba(23, 48, 62, 0.5);
+  --rule: rgba(23, 48, 62, 0.22);
+  --brand: #17303e;
+  --brand-2: #112b38;
+  --on-brand: #ffffff;
+  --glass: linear-gradient(95deg, rgba(255, 255, 255, 0.8) -0.91%, rgba(244, 245, 245, 0.8) 100.59%);
+  --glass-ink: #17303e;
+  --wrap: 90vw;
+  --gap: 2vw;
+  --fs-body: 1.5vw;
+  --lh-body: 1.2;
+  --fs-h3: 2vw;
+  --fs-btn: 1.3vw;
+  --fs-small: 1.1vw;
+  --font-em: var(--font-narrow), 'Noto Sans Hebrew', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-em);
+  font-stretch: 62.5%;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  min-height: 100svh;
+}
+@media (max-width: 1024px) {
+  .page { --wrap: calc(100vw - 40px); --gap: 16px; --fs-body: 20px; --fs-h3: 24px; --fs-btn: 17px; --fs-small: 14px; }
+}
+@media (max-width: 767px) {
+  .page { --wrap: calc(100vw - 32px); --fs-body: 19px; --fs-h3: 22px; }
+}
+.page :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; box-shadow: none; }
+
+/* Faint vertical rules behind the hero blocks (source: an SVG of 1px lines every 115/1606 of the width at 10% opacity) */
+.lines {
+  background-image: repeating-linear-gradient(to left, transparent 0, transparent calc(7.16vw - 1px), rgba(23, 48, 62, 0.08) calc(7.16vw - 1px), rgba(23, 48, 62, 0.08) 7.16vw);
+  background-position: 6.75vw 0;
+}
+
+.wrap { width: var(--wrap); margin-inline: auto; }
+
+/* Octagon button ("poly-btn"): cut corners of 0.75vw, the arrow drifts away from the label on hover (gap → 2vw, 0.5s). */
+.poly {
+  --cut: 0.75vw;
+  display: inline-flex; align-items: center; gap: 1vw;
+  padding: 1vw 1.5vw;
+  background: var(--brand); color: var(--on-brand);
+  font-family: var(--font-em); font-stretch: 62.5%; font-weight: 700; font-size: var(--fs-btn); line-height: 1;
+  white-space: nowrap; border: 0; cursor: pointer;
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+  transition: gap 0.5s, background-color 0.3s;
+}
+.poly svg { flex: none; width: 1.3vw; height: auto; }
+.poly:hover, .poly:focus-visible { gap: 2vw; }
+.poly[data-tone='light'] { background: #fff; color: var(--ink); }
+@media (max-width: 1024px) {
+  .poly { --cut: 8px; gap: 10px; padding: 13px 18px; min-height: 44px; }
+  .poly svg { width: 17px; }
+  .poly:hover, .poly:focus-visible { gap: 10px; }
+}
+
+/* Small filled diamond used as a mark between rules and beside titles */
+.diamond { display: inline-block; width: 1vw; height: 1vw; background: currentColor; transform: rotate(45deg); flex: none; }
+@media (max-width: 1024px) { .diamond { width: 10px; height: 10px; } }
+
+/* Title row: title on the right, a 1px rule, an action on the left */
+.headRow { display: flex; align-items: center; gap: 2vw; margin-bottom: 1vw; }
+.headRow > h2, .headRow > p { margin: 0; font-size: var(--fs-h3); font-weight: 700; line-height: 1; white-space: nowrap; }
+.headRow .rule { flex: 1; height: 1px; background: var(--rule); }
+@media (max-width: 767px) {
+  .headRow { flex-wrap: wrap; gap: 14px; }
+  .headRow .rule { display: none; }
+  .headRow > h2, .headRow > p { white-space: normal; width: 100%; }
+}
+
+/* Section title with rules either side of a diamond (source: "WHAT WE DO" row) */
+.splitHead { display: flex; align-items: center; gap: 2vw; padding: 0 5vw; margin-bottom: 3vw; }
+.splitHead h2 { margin: 0; font-size: 3vw; font-weight: 300; line-height: 1; white-space: nowrap; }
+.splitHead .rule { flex: 1; height: 1px; background: var(--rule); }
+.splitHead p { margin: 0; width: 23vw; text-align: center; font-weight: 700; font-size: var(--fs-body); line-height: 1.2; }
+@media (max-width: 767px) {
+  .splitHead { flex-direction: column; gap: 14px; padding: 0 16px; margin-bottom: 24px; }
+  .splitHead h2 { font-size: 34px; white-space: normal; text-align: center; }
+  .splitHead .rule { display: none; }
+  .splitHead p { width: auto; }
+}
+
+/* Outlined octagon (source: ::before in the line colour, ::after in the fill inset 1px, both clipped the same) */
+.frame { position: relative; isolation: isolate; --c: polygon(0% 14%, 3% 0%, 97% 0%, 100% 14%, 100% 86%, 97% 100%, 3% 100%, 0% 86%); }
+.frame::before, .frame::after { content: ''; position: absolute; clip-path: var(--c); pointer-events: none; }
+.frame::before { inset: 0; background: var(--frame-line, var(--ink)); z-index: -2; }
+.frame::after { inset: 1px; background: var(--frame-fill, var(--bg)); z-index: -1; }
+.frameWide { --c: polygon(0% 15%, 5% 0%, 95% 0%, 100% 15%, 100% 85%, 95% 100%, 5% 100%, 0% 85%); }
+
+/* ◆ — title — ◆ row, with an optional serif kicker above (source: Foglihten 3vw kickers; Frank Ruhl Libre light here) */
+.rule2 { display: flex; flex-direction: column; align-items: center; gap: 0.4vw; text-align: center; }
+.kicker { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3vw; line-height: 1; }
+.ruleRow { display: flex; align-items: center; justify-content: center; gap: 1vw; width: 100%; }
+.ruleRow .line { flex: 0 1 var(--line-w, 4.6vw); height: 1px; background: var(--ink); opacity: 0.6; }
+.ruleRow h1, .ruleRow h2, .ruleRow p { margin: 0; font-size: 3.1vw; font-weight: 400; line-height: 1; }
+.ruleRow .diamond { width: 0.7vw; height: 0.7vw; }
+.long { --line-w: 33vw; }
+.long .line { flex-grow: 1; }
+
+.prose { font-size: 1.4vw; line-height: 1.1; }
+.prose p { margin: 0 0 1.1vw; }
+.prose h2, .prose h3 { margin: 2vw 0 0.8vw; font-size: 2vw; font-weight: 700; line-height: 1.1; }
+.prose ul { margin: 0 0 1.1vw; padding-inline-start: 1.4vw; }
+.prose li { margin-bottom: 0.4vw; }
+.prose blockquote { margin: 1.6vw 0; padding-inline-start: 1.4vw; border-inline-start: 1px solid var(--ink); font-size: 1.8vw; font-weight: 300; }
+
+/* fadeInUp (Elementor's entrance: from 100% down, 1.25s) */
+.page [data-fade] { opacity: 0; transform: translate3d(0, 60px, 0); transition: opacity 1.25s cubic-bezier(0.22, 1, 0.36, 1), transform 1.25s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: var(--d, 0ms); }
+.page [data-fade='in'] { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .page [data-fade] { opacity: 1; transform: none; transition: none; } }
+
+@media (max-width: 1024px) {
+  .kicker { font-size: 34px; }
+  .ruleRow { gap: 10px; }
+  .ruleRow h1, .ruleRow h2, .ruleRow p { font-size: 32px; }
+  .ruleRow .diamond { width: 8px; height: 8px; }
+  .ruleRow .line { flex-basis: 40px; }
+  .long .line { flex-basis: 40px; }
+  .prose { font-size: 19px; line-height: 1.35; }
+  .prose p { margin-bottom: 14px; }
+  .prose h2, .prose h3 { font-size: 24px; margin: 26px 0 10px; }
+  .prose ul { padding-inline-start: 20px; margin-bottom: 14px; }
+  .prose blockquote { font-size: 22px; margin: 22px 0; padding-inline-start: 16px; }
+}
+.ruleRow h2, .ruleRow > p { white-space: nowrap; }
+@media (max-width: 767px) { .ruleRow h2, .ruleRow > p { white-space: normal; } }

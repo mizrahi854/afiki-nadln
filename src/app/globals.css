@@ -1,42 +1,31 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --ink: #111111;
+  --accent: #c6d218;
+  /* below the hero: neutral black and white (the references' black, Emerald's green replaced by it) */
+  --night: #0a0a0a;
+  --deep: #121212;
+  --petrol: #1c1c1c;
+  --paper: #f3f2ef;
+  --mute: rgba(243, 242, 239, 0.58);
+  --faint: rgba(243, 242, 239, 0.38);
+  --line: rgba(243, 242, 239, 0.13);
+  --lime: #c7d31b;
+  --gutter: max(16px, 5.2vw);
+  --serif: var(--font-serif), 'Frank Ruhl Libre', serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --font: var(--font-rubik), 'Rubik', system-ui, sans-serif;
+  --s: 1; /* canvas scale, set before paint in layout.tsx */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--night); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+button, select { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+:focus-visible { outline: 2px solid #111; outline-offset: 3px; box-shadow: 0 0 0 6px rgba(198, 210, 24, 0.6); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

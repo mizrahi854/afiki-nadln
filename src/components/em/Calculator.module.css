@@ -1,0 +1,45 @@
+/* Adaptation: Emerald has no calculator. The LET'S TALK frame holds the fields; results use the 156×120 boxes. */
+.calc { padding: 3.2vw 3vw 2.4vw; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4vw; justify-items: center; }
+.fields { display: grid; grid-template-columns: repeat(4, 15.2vw); gap: 1.7vw; }
+.fields label { display: grid; gap: 0.4vw; font-size: 1.2vw; color: var(--ink-2); }
+.fields input { height: 3.6vw; border: 0; border-bottom: 1px solid var(--ink); background: transparent; color: var(--ink); font: inherit; font-stretch: 62.5%; font-size: 1.8vw; text-align: right; padding: 0 0.2vw; border-radius: 0; }
+.out li { width: 16vw; }
+.out b { font-size: 2.2vw; line-height: 1.6; }
+.warn { margin: 0; font-size: 1.2vw; font-weight: 700; text-align: center; }
+.fine { margin: 0; font-size: 1.1vw; color: var(--ink-2); text-align: center; max-width: 60vw; }
+.preset { display: grid; gap: 0.4vw; width: min(100%, 40vw); font-size: 1.2vw; color: var(--ink-2); }
+.preset select { width: 100%; min-width: 0; text-overflow: ellipsis; height: 3.2vw; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: inherit; font-stretch: 62.5%; font-size: 1.4vw; padding: 0 1vw; border-radius: 0; cursor: pointer; }
+
+/* compact: the floating panel (≈ 30vw wide) */
+.calc[data-compact] { padding: 2vw 1.8vw 1.6vw; gap: 1.4vw; }
+.calc[data-compact] .fields { grid-template-columns: 1fr 1fr; gap: 1.2vw; width: 100%; }
+.calc[data-compact] .fields label { font-size: max(13px, 0.95vw); }
+.calc[data-compact] .fields input { height: 2.8vw; font-size: max(17px, 1.4vw); }
+.calc[data-compact] .out { flex-wrap: wrap; justify-content: center; gap: 0.7vw; }
+.calc[data-compact] .out li { width: calc(50% - 0.35vw); height: 6.4vw; }
+.calc[data-compact] .out b { font-size: max(18px, 1.55vw); }
+.calc[data-compact] .out span { font-size: max(13px, 1vw); }
+.calc[data-compact] .warn, .calc[data-compact] .fine { font-size: max(12px, 0.9vw); max-width: none; }
+
+@media (max-width: 1024px) {
+  .preset { width: 100%; font-size: 15px; gap: 4px; }
+  .preset select { height: 48px; font-size: 18px; padding: 0 12px; }
+  .calc[data-compact] { padding: 28px 16px 20px; gap: 18px; }
+  .calc[data-compact] .fields { gap: 14px; }
+  .calc[data-compact] .fields label { font-size: 15px; }
+  .calc[data-compact] .fields input { height: 44px; font-size: 19px; }
+  .calc[data-compact] .out { gap: 8px; }
+  .calc[data-compact] .out li { width: calc(50% - 4px); height: 84px; }
+  .calc[data-compact] .out b { font-size: 20px; }
+  .calc[data-compact] .out span { font-size: 14px; }
+  .calc[data-compact] .warn, .calc[data-compact] .fine { font-size: 13px; }
+  .calc { padding: 40px 18px 26px; gap: 22px; --c: polygon(0% 4%, 9% 0%, 91% 0%, 100% 4%, 100% 96%, 91% 100%, 9% 100%, 0% 96%); }
+  .fields { grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+  .fields label { font-size: 15px; gap: 4px; }
+  .fields input { height: 48px; font-size: 20px; }
+  .out { flex-wrap: wrap; justify-content: center; }
+  .out li { width: calc(50% - 5px); height: 96px; }
+  .out b { font-size: 21px; }
+  .warn { font-size: 15px; }
+  .fine { font-size: 14px; max-width: none; }
+}

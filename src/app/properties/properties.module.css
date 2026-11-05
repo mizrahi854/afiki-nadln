@@ -1,0 +1,10 @@
+/* @1440: projects block padding 100.8px top (7vw), 144px bottom (10vw); head row 52px tall. */
+.list { padding: 7vw 0 10vw; scroll-margin-top: 4vw; }
+.wait { min-height: 60vw; }
+.kinds { padding-bottom: 5vw; }
+@media (max-width: 767px) {
+  .list { display: flex; flex-direction: column; padding: 40px 0 72px; scroll-margin-top: 60px; }
+  /* the source moves the title row under the grid on phones */
+  .head { order: 2; margin: 32px 0 0; }
+  .kinds { padding-bottom: 48px; }
+}

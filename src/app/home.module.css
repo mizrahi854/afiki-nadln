@@ -1,0 +1,42 @@
+/* Home page sections between the shared inner-page blocks. Desktop in vw like the rest of the system. */
+.listings { padding: 6vw 0 7vw; scroll-margin-top: 5vw; }
+.services { padding: 7vw 0 6vw; }
+.blog { padding: 2vw 0 7vw; }
+/* mortgage: the about block's title and text beside the calculator, three numbered steps under a hairline */
+.mortgage { padding: 7vw 0 2vw; display: grid; grid-template-columns: minmax(0, 1fr) 40vw; align-items: center; gap: 6vw; }
+.mortgageText { display: grid; justify-items: start; gap: 1.6vw; }
+.steps { list-style: none; margin: 0.4vw 0 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }
+.steps li { display: grid; gap: 0.4vw; padding: 1.2vw 1.2vw 0 0; font-size: var(--fs-small); color: var(--ink-2); }
+.steps li + li { border-right: 1px solid var(--rule); }
+.steps li:first-child { padding-right: 0; }
+.steps b { font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 2.2vw; line-height: 1; color: var(--ink); }
+.mortgageLinks { display: flex; align-items: center; gap: 2vw; margin-top: 0.6vw; }
+.mortgageLinks a:not([class]) { color: var(--ink); font-size: var(--fs-btn); text-decoration: underline; text-underline-offset: 4px; }
+
+/* about: the about page's title (regular line with a diamond and a rule, then a large bold line) beside the framed photo */
+.about { padding-right: 5vw; display: grid; justify-items: start; gap: 1.6vw; }
+.aboutTitle { margin: 0; display: grid; font-weight: 400; }
+.aboutLead { display: flex; align-items: center; gap: 1.2vw; font-size: 4.6vw; font-weight: 300; line-height: 1; }
+.aboutLead > span { order: 2; width: 6vw; height: 1px; background: var(--ink); }
+.aboutLead > i { order: 3; margin-inline-start: -1.2vw; }
+.aboutTitle strong { font-size: 7vw; font-weight: 700; line-height: 0.95; }
+.aboutText { margin: 0; max-width: 36vw; font-size: var(--fs-body); line-height: 1.25; }
+
+@media (max-width: 1024px) {
+  .listings { padding: 48px 0 56px; scroll-margin-top: 60px; }
+  .services { padding: 56px 0 40px; }
+  .blog { padding: 16px 0 56px; }
+  .mortgage { grid-template-columns: minmax(0, 1fr); padding: 56px 0 8px; gap: 28px; }
+  .mortgageText { gap: 16px; }
+  .steps { grid-template-columns: 1fr; margin-top: 4px; }
+  .steps li { grid-template-columns: 44px 1fr; align-items: center; padding: 14px 0; font-size: 17px; }
+  .steps li + li { border-right: 0; border-top: 1px solid var(--rule); }
+  .steps b { font-size: 26px; }
+  .mortgageLinks { flex-wrap: wrap; gap: 14px 20px; margin-top: 4px; }
+  .about { padding: 0 16px; gap: 16px; }
+  .aboutLead { font-size: 44px; gap: 12px; }
+  .aboutLead > span { width: 40px; }
+  .aboutLead > i { margin-inline-start: -12px; }
+  .aboutTitle strong { font-size: 64px; }
+  .aboutText { max-width: none; font-size: 19px; line-height: 1.4; }
+}

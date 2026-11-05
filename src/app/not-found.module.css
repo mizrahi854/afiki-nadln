@@ -1,0 +1,13 @@
+.box { padding: 2vw 0 7vw; }
+.frame { padding: 3vw 4vw 3.4vw; display: grid; justify-items: center; text-align: center; }
+.num { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 12vw; line-height: 1; }
+.text { margin: 1.6vw 0 2vw; font-size: 1.5vw; }
+.links { display: flex; gap: 1.2vw; flex-wrap: wrap; justify-content: center; }
+.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+@media (max-width: 1024px) {
+  .box { padding: 16px 0 56px; }
+  .frame { padding: 40px 18px; --c: polygon(0% 6%, 9% 0%, 91% 0%, 100% 6%, 100% 94%, 91% 100%, 9% 100%, 0% 94%); }
+  .num { font-size: 110px; }
+  .text { font-size: 18px; margin: 16px 0 20px; }
+  .links { gap: 10px; }
+}

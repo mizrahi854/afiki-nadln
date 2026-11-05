@@ -1,0 +1,203 @@
+/* Shared Emerald blocks, measured @1440 (values in vw = px / 14.4). */
+
+/* ── Project gallery: 2 × 715×504 visible, diamond arrows 61px ── */
+.car { position: relative; margin-top: -0.5vw; }
+.carView { overflow: hidden; }
+.carTrack { display: flex; }
+.carTrack img { flex: 0 0 calc(100% / var(--per)); width: calc(100% / var(--per)); height: 35vw; object-fit: cover; }
+.carBtn { position: absolute; top: 50%; width: 4.25vw; height: 4.25vw; margin-top: -2.1vw; border: 0; padding: 0; background: #fff; color: var(--ink); cursor: pointer; transform: rotate(45deg); display: grid; place-items: center; }
+.carBtn span { transform: rotate(-45deg); display: grid; }
+.carBtn svg { width: 1.4vw; height: 1.4vw; }
+.carPrev { right: 1vw; }
+.carNext { left: 1vw; }
+
+/* ── Intro under the gallery: title frame right (432×73), text left (763w) ── */
+.intro { display: grid; grid-template-columns: 34vw minmax(0, 53vw); justify-content: space-between; align-items: start; padding: 4vw 0 6vw; }
+.titleBox { padding: 1.4vw 1.6vw; }
+.titleBox h1 { font-size: 2.6vw; font-weight: 400; line-height: 1.05; text-wrap: balance; }
+.facts { list-style: none; margin: 1.6vw 0 0; padding: 0; display: grid; gap: 1.1vw; font-size: 1.4vw; }
+.facts li { display: flex; align-items: center; gap: 0.7vw; }
+.facts svg { width: 1.5vw; height: 1.5vw; flex: none; }
+.facts b { font-weight: 700; }
+
+/* ── Image in a chamfered frame (747×677) + numbers (156×120 boxes) ── */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) 52vw; align-items: center; gap: 6vw; padding: 0 5vw 6vw 0; }
+.chamfer { position: relative; height: 47vw; --cut: polygon(0% 0%, 85% 0%, 100% 12%, 100% 87%, 85% 100%, 0% 100%); }
+.chamfer::before { content: ''; position: absolute; inset: 0; background: var(--ink); clip-path: var(--cut); }
+.chamfer::after { content: ''; position: absolute; inset: 1px 1px 1px 0; background: var(--bg); clip-path: var(--cut); }
+.chamfer img { position: absolute; inset: 1vw 1vw 1vw 0; width: calc(100% - 1vw); height: calc(100% - 2vw); object-fit: cover; clip-path: var(--cut); z-index: 1; }
+.numbers { display: grid; justify-items: center; gap: 2.4vw; }
+.numbers > p { margin: 0; font-size: 2vw; font-weight: 700; }
+.boxes { display: flex; gap: 1.25vw; list-style: none; margin: 0; padding: 0; }
+.boxes li { width: 10.8vw; height: 8.3vw; display: grid; place-content: center; text-align: center; --c: polygon(0% 14%, 10% 0%, 90% 0%, 100% 14%, 100% 86%, 90% 100%, 10% 100%, 0% 86%); }
+.boxes b { display: block; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3vw; line-height: 1.5; }
+.boxes span { font-size: 1.5vw; }
+
+/* ── LET'S TALK: frame 1296×467, fields 219×52 ── */
+.talkWrap { padding: 4vw 0 5vw; }
+.talk { padding: 3.75vw 3vw 2.6vw; text-align: center; }
+.talkSub { margin: 2vw 0 2.6vw; font-size: 1.5vw; }
+.form { display: grid; grid-template-columns: repeat(4, 15.2vw) auto; justify-content: center; align-items: end; gap: 1.2vw 1.7vw; width: 82.6vw; margin: 0 auto; }
+.form label { display: block; text-align: start; }
+.form input:not([type='checkbox']), .form select {
+  width: 100%; height: 3.6vw; border: 0; border-bottom: 1px solid var(--ink); background: transparent; color: var(--ink);
+  font-family: inherit; font-stretch: 62.5%; font-size: 1.4vw; padding: 0 0.2vw; border-radius: 0; appearance: none;
+}
+.form input::placeholder { color: var(--ink-2); }
+.sel { position: relative; }
+.sel::after { content: ''; position: absolute; left: 0.4vw; top: 45%; width: 0.45vw; height: 0.45vw; border: solid var(--ink); border-width: 0 1px 1px 0; transform: translateY(-50%) rotate(45deg); pointer-events: none; }
+.form .poly { justify-self: start; }
+.form button { min-width: 15.2vw; justify-content: center; height: 3.75vw; }
+.consent { grid-column: 1 / -1; display: flex !important; align-items: center; gap: 0.6vw; font-size: 1.4vw; justify-self: start; }
+.consent input { width: 1vw; height: 1vw; accent-color: var(--brand); }
+.sent { min-height: 1.4vw; margin: 1vw 0 0; font-size: 1.1vw; color: var(--ink-2); }
+
+/* ── Process: pinned, sideways steps (389 wide), photo 677 wide revealed by a mask ── */
+.proc { position: relative; height: 100vh; min-height: 620px; overflow: hidden; }
+.procPic { position: absolute; left: 0; top: 0; bottom: 0; width: 47vw; z-index: 2; pointer-events: none; }
+.procImg { --reveal: 100%; width: 100%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 var(--reveal), transparent calc(var(--reveal) + 10%), transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, #000 var(--reveal), transparent calc(var(--reveal) + 10%), transparent 100%); }
+.procHead { position: absolute; z-index: 3; top: 6vw; right: 6.4vw; width: 35vw; padding: 1.5vw 2vw 1.2vw; text-align: center; }
+.procHead h2 { margin: 0; font-size: 3.1vw; font-weight: 400; line-height: 1; }
+/* trailing room the width of the photo, so the last step can travel past it (and a short list still moves) */
+.steps { position: absolute; top: 0; bottom: 0; right: 0; display: flex; margin: 0; padding: 0 0 0 47vw; list-style: none; will-change: transform; }
+.step { position: relative; flex: 0 0 27vw; padding: 34vh 2.5vw 0; }
+.num { display: block; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3vw; line-height: 1; margin-bottom: 4vw; text-align: left; }
+.step h3 { margin: 0 0 1vw; font-size: 2vw; font-weight: 700; line-height: 1.15; }
+.step p { margin: 0; font-size: 1.4vw; line-height: 1.15; color: var(--ink-2); }
+.stem { position: absolute; left: 2.5vw; top: calc(34vh + 4vw); bottom: 3vw; width: 1px; background: var(--ink); }
+.stem i { position: absolute; bottom: -0.35vw; left: -0.35vw; }
+.base { position: absolute; left: 0; right: 0; bottom: 3vw; height: 1px; background: var(--ink); opacity: 0.6; }
+
+/* ── FAQ: title and contacts right, questions left ── */
+.faq { display: grid; grid-template-columns: 28vw minmax(0, 50vw); justify-content: space-between; padding: 5vw 0; }
+.faqSide { display: grid; gap: 1.2vw; align-content: start; justify-items: center; text-align: center; font-size: 1.4vw; }
+.faqSide p { margin: 1vw 0 0; }
+.faqSide a { display: inline-flex; align-items: center; gap: 0.6vw; font-weight: 700; }
+.faqSide svg { width: 1.4vw; height: 1.4vw; }
+.faqList { list-style: none; margin: 0; padding: 0; }
+.faqList li { border-bottom: 1px solid var(--rule); }
+.faqList h3 { margin: 0; font-size: 1.4vw; font-weight: 400; }
+.faqList button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 2vw; padding: 1.1vw 0; background: none; border: 0; cursor: pointer; text-align: start; font: inherit; font-stretch: 62.5%; color: var(--ink); }
+.faqList button svg { width: 1.4vw; height: 1.4vw; flex: none; transition: transform 0.4s; }
+.faqList li[data-open] button svg { transform: rotate(45deg); }
+.answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s; }
+.answer > div { overflow: hidden; }
+.answer p { margin: 0 0 1vw; font-size: 1.3vw; line-height: 1.2; color: var(--ink-2); }
+li[data-open] .answer { grid-template-rows: 1fr; }
+.from a { text-decoration: underline; text-underline-offset: 3px; color: var(--ink); }
+
+/* ── About opening: title right, collage left (5 framed photos) ── */
+.collage { position: absolute; inset: 0 50% 0 0; }
+.piece { position: absolute; margin: 0; padding: 0.5vw; border: 1px solid var(--ink); background: var(--bg); transition: translate 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.piece img { width: 100%; height: 100%; object-fit: cover; }
+.piece:nth-child(1) { left: 27.4vw; top: 11.1vw; width: 22.6vw; height: 18.1vw; rotate: -3deg; }
+.piece:nth-child(2) { left: 9vw; top: 8.75vw; width: 19.1vw; height: 22.4vw; rotate: -4deg; }
+.piece:nth-child(3) { left: -21.4vw; top: 15.2vw; width: 31.5vw; height: 19.2vw; rotate: -6deg; }
+.piece:nth-child(4) { left: 25.1vw; top: 29.3vw; width: 14.7vw; height: 18.75vw; rotate: -3deg; }
+.piece:nth-child(5) { left: 4.3vw; top: 30.8vw; width: 21.5vw; height: 17.3vw; rotate: 3deg; }
+
+/* ── Values: photo band, 5 octagon cards 223×193 with a diamond icon on the top edge ── */
+.values { position: relative; padding: 9vw 0 4vw; }
+.values::before { content: ''; position: absolute; inset: 0 0 45%; background: var(--band) center / cover no-repeat; z-index: -1; }
+.values::after { content: ''; position: absolute; inset: 0 0 45%; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), var(--bg)); z-index: -1; }
+.values { isolation: isolate; }
+.cards5 { list-style: none; margin: 7vw 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 15.5vw); justify-content: space-between; }
+.vcard { position: relative; min-height: 13.4vw; padding: 3.4vw 1.5vw 1.5vw; text-align: center; --c: polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%); }
+.badge { position: absolute; top: -2.45vw; left: 50%; width: 4.9vw; height: 4.9vw; margin-left: -2.45vw; display: grid; place-items: center; background: var(--brand); color: #fff; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); z-index: 1; }
+.badge svg { width: 2vw; height: 2vw; }
+.vcard h3 { margin: 0 0 0.8vw; font-size: 2vw; font-weight: 700; line-height: 1.1; }
+.vcard p { margin: 0; font-size: 1.4vw; line-height: 1.1; }
+
+/* ── Counters: 100.8px serif numbers ── */
+.counters { display: flex; justify-content: center; gap: 8vw; padding: 6vw 0; text-align: center; list-style: none; margin: 0; }
+.counters b { display: block; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 7vw; line-height: 1; direction: ltr; }
+.counters li > span { display: block; font-size: 1.5vw; margin-top: 0.6vw; }
+
+/* ── Story: full-bleed photo with a glass octagon panel on the right ── */
+.story { position: relative; height: 50vw; overflow: hidden; }
+.story > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.storyPanel { position: absolute; top: 4.5vw; bottom: 4.5vw; right: 5vw; width: 35vw; padding: 4vw 3vw; display: flex; flex-direction: column; justify-content: center; gap: 1.6vw;
+  --frame-line: rgba(255, 255, 255, 0.9); --frame-fill: rgba(255, 255, 255, 0.78); --c: polygon(0% 10%, 12% 0%, 88% 0%, 100% 10%, 100% 90%, 88% 100%, 12% 100%, 0% 90%); }
+.storyPanel::after { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.storyPanel p { font-size: 1.4vw; line-height: 1.15; }
+.storyPanel > a { align-self: flex-start; }
+
+@media (max-width: 1024px) {
+  .car { margin-top: 0; }
+  .carTrack img { height: 42vw; }
+  .carBtn { width: 40px; height: 40px; margin-top: -20px; }
+  .carBtn svg { width: 16px; height: 16px; }
+  .carPrev { right: 10px; } .carNext { left: 10px; }
+  .intro { grid-template-columns: 1fr; gap: 28px; padding: 32px 0 48px; }
+  .titleBox { padding: 16px 20px; }
+  .titleBox h1 { font-size: 30px; }
+  .facts { font-size: 18px; gap: 12px; margin-top: 18px; }
+  .facts svg { width: 20px; height: 20px; }
+  .split { grid-template-columns: 1fr; padding: 0 0 48px; gap: 32px; }
+  .chamfer { height: 80vw; margin-inline-end: 16px; }
+  .chamfer img { inset: 10px 10px 10px 0; width: calc(100% - 10px); height: calc(100% - 20px); }
+  .numbers { gap: 18px; padding: 0 16px; }
+  .numbers > p { font-size: 22px; }
+  .boxes { gap: 10px; }
+  .boxes li { width: 104px; height: 88px; }
+  .boxes b { font-size: 30px; }
+  .boxes span { font-size: 16px; }
+  .talkWrap { padding: 40px 0 56px; }
+  .talk { padding: 44px 20px 28px; --c: polygon(0% 4%, 9% 0%, 91% 0%, 100% 4%, 100% 96%, 91% 100%, 9% 100%, 0% 96%); }
+  .talkSub { font-size: 18px; margin: 18px 0 20px; }
+  .form { grid-template-columns: 1fr; width: 100%; gap: 14px; }
+  .form input:not([type='checkbox']), .form select { height: 48px; font-size: 18px; }
+  .sel::after { width: 7px; height: 7px; left: 6px; }
+  .form button { width: 100%; height: 50px; }
+  .consent { font-size: 16px; gap: 10px; align-items: flex-start; text-align: start; }
+  .consent input { width: 20px; height: 20px; flex: none; }
+  .sent { font-size: 14px; }
+  .proc { height: auto; min-height: 0; overflow: visible; padding: 32px 0 40px; display: flex; flex-direction: column; }
+  .procPic { position: relative; width: 100%; height: 70vw; order: 2; margin-top: 24px; }
+  .procHead { position: relative; top: auto; right: auto; width: auto; margin: 0 16px 8px; padding: 18px 16px; }
+  .procHead h2 { font-size: 30px; }
+  .steps { position: relative; flex-direction: column; padding: 0 16px; }
+  .step { flex: none; padding: 22px 0 22px 34px; border-bottom: 1px solid var(--rule); }
+  .num { font-size: 32px; margin-bottom: 12px; text-align: start; }
+  .step h3 { font-size: 22px; margin-bottom: 8px; }
+  .step p { font-size: 18px; line-height: 1.35; }
+  .stem { left: 6px; top: 26px; bottom: 26px; }
+  .stem i { bottom: -5px; left: -4.5px; }
+  .base { display: none; }
+  .faq { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+  .faqSide { font-size: 18px; gap: 12px; }
+  .faqSide svg { width: 18px; height: 18px; }
+  .faqSide a { min-height: 44px; }
+  .faqList h3 { font-size: 18px; }
+  .faqList button { padding: 16px 0; min-height: 56px; }
+  .faqList button svg { width: 20px; height: 20px; }
+  .answer p { font-size: 17px; line-height: 1.4; margin-bottom: 14px; }
+  .collage { position: relative; inset: auto; height: 96vw; margin-top: 24px; }
+  .piece { padding: 6px; }
+  .piece:nth-child(1) { left: 48vw; top: 4vw; width: 44vw; height: 36vw; }
+  .piece:nth-child(2) { left: 6vw; top: 0; width: 38vw; height: 46vw; }
+  .piece:nth-child(3) { display: none; }
+  .piece:nth-child(4) { left: 56vw; top: 46vw; width: 34vw; height: 44vw; }
+  .piece:nth-child(5) { left: 8vw; top: 52vw; width: 44vw; height: 36vw; }
+  .values { padding: 56px 0 24px; }
+  .values::before, .values::after { inset: 0 0 70%; }
+  .cards5 { grid-template-columns: 1fr; gap: 44px; margin-top: 56px; padding: 0 16px; }
+  .vcard { min-height: 0; padding: 44px 22px 24px; }
+  .badge { width: 56px; height: 56px; top: -28px; margin-left: -28px; }
+  .badge svg { width: 22px; height: 22px; }
+  .vcard h3 { font-size: 22px; margin-bottom: 8px; }
+  .vcard p { font-size: 18px; line-height: 1.35; }
+  .counters { flex-direction: column; gap: 36px; padding: 48px 0; }
+  .counters b { font-size: 72px; }
+  .counters li > span { font-size: 18px; margin-top: 6px; }
+  .story { height: auto; display: flex; flex-direction: column; }
+  .story > img { position: relative; height: 70vw; }
+  .storyPanel { position: relative; inset: auto; width: auto; margin: -48px 16px 0; padding: 36px 22px; gap: 16px; }
+  .storyPanel p { font-size: 18px; line-height: 1.35; }
+}
+@media (max-width: 767px) {
+  .carTrack img { height: 34vw; }
+}
+@media (prefers-reduced-motion: reduce) { .answer { transition: none; } .piece { transition: none; } }
