@@ -7,6 +7,7 @@ import s from './blocks.module.css';
 /**
  * Emerald's project gallery: a full-width strip showing two photos at a time (three on phones), infinite,
  * advancing every 3s with a 1s slide, paused on hover and after any interaction; diamond arrows on both edges.
+ * Phones: one large photo at a time below the header bar.
  */
 export function EmCarousel({ images, label }: { images: string[]; label: string }) {
   const [per, setPer] = useState(2);
@@ -19,7 +20,7 @@ export function EmCarousel({ images, label }: { images: string[]; label: string 
 
   useEffect(() => {
     const m = matchMedia('(max-width: 767px)');
-    const f = () => { const p = m.matches ? 3 : 2; setPer(p); setAnim(false); setI(p); };
+    const f = () => { const p = m.matches ? 1 : 2; setPer(p); setAnim(false); setI(p); };
     f(); m.addEventListener('change', f);
     return () => m.removeEventListener('change', f);
   }, []);

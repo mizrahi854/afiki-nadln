@@ -8,7 +8,8 @@
 .inner { width: 80vw; display: grid; justify-items: center; }
 .kick { --line-w: 5vw; }
 .kick p { font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3vw !important; }
-.title { margin: 0.4vw 0 0; font-size: 7.8vw; font-weight: 700; line-height: 1; white-space: nowrap; }
+/* sized by letter count (--tl) so a long title still sits on one line inside the light centre */
+.title { margin: 0.4vw 0 0; font-size: min(7.8vw, calc(66vw / (var(--tl) * 0.55))); font-weight: 700; line-height: 1; white-space: nowrap; }
 .text { width: 31vw; margin-top: 2.4vw; font-size: 1.4vw; line-height: 1.15; }
 .text p { margin: 0 0 0.8vw; }
 .action { margin-top: 2.4vw; }
@@ -17,7 +18,7 @@
   .hero::after { background: rgba(255, 255, 255, 0.78); }
   .inner { width: 100%; }
   .kick p { font-size: 26px !important; }
-  .title { font-size: 54px; white-space: normal; }
+  .title { font-size: 48px; white-space: normal; text-wrap: balance; }
   .text { width: auto; margin-top: 20px; font-size: 19px; line-height: 1.35; }
   .action { margin-top: 22px; }
 }

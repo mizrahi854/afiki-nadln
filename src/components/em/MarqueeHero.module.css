@@ -19,9 +19,9 @@
 
 .center { position: relative; z-index: 2; width: 35vw; margin: 0 auto; padding-top: 10vw; text-align: center; }
 .title { margin: 0; font-weight: 400; color: var(--ink); }
-.lead { display: inline-flex; align-items: center; gap: 2.4vw; font-size: 10vw; font-weight: 300; line-height: 0.75; }
+.lead { display: inline-flex; align-items: center; gap: 2vw; font-size: min(10vw, calc(27vw / (var(--ll) * 0.56))); font-weight: 300; line-height: 0.9; white-space: nowrap; }
 .lead i { width: 1.5vw; height: 1.5vw; }
-.big { display: block; font-size: 13.5vw; font-weight: 700; line-height: 10vw; margin-top: 1.4vw; }
+.big { display: block; font-size: min(13.5vw, calc(34vw / (var(--sl) * 0.6))); font-weight: 700; line-height: 1; letter-spacing: -0.01em; margin-top: 1vw; white-space: nowrap; }
 .text { margin-top: 2.8vw; font-size: 1.5vw; line-height: 1.2; }
 .text p { margin: 0 0 1vw; }
 .text b { font-weight: 700; }
@@ -37,9 +37,9 @@
   .stripTrack { position: absolute; top: 4px; right: -60px; display: flex; gap: 14px; rotate: -5deg; animation: side calc(var(--n) * 6s) linear infinite; }
   .stripTrack img { width: 280px; height: 280px; object-fit: cover; flex: none; }
   .center { width: auto; padding: 0 20px; }
-  .lead { font-size: 72px; gap: 22px; line-height: 0.9; }
+  .lead { font-size: min(72px, calc((100vw - 90px) / (var(--ll) * 0.56))); gap: 18px; line-height: 0.95; }
   .lead i { width: 12px; height: 12px; }
-  .big { font-size: 100px; line-height: 0.95; }
+  .big { font-size: min(100px, calc((100vw - 40px) / (var(--sl) * 0.6))); line-height: 1; }
   .text { margin-top: 28px; font-size: 20px; }
   .text p { margin-bottom: 14px; }
 }

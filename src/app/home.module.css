@@ -19,7 +19,7 @@
 .aboutLead { display: flex; align-items: center; gap: 1.2vw; font-size: 4.6vw; font-weight: 300; line-height: 1; }
 .aboutLead > span { order: 2; width: 6vw; height: 1px; background: var(--ink); }
 .aboutLead > i { order: 3; margin-inline-start: -1.2vw; }
-.aboutTitle strong { font-size: 7vw; font-weight: 700; line-height: 0.95; }
+.aboutTitle strong { font-size: 5.8vw; font-weight: 700; line-height: 0.95; white-space: nowrap; }
 .aboutText { margin: 0; max-width: 36vw; font-size: var(--fs-body); line-height: 1.25; }
 
 @media (max-width: 1024px) {

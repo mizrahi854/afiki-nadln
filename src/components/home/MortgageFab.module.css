@@ -33,8 +33,10 @@
 .full { color: var(--ink); font-size: var(--fs-btn); text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 1024px) {
-  .fab { left: 16px; bottom: 16px; gap: 8px; padding-inline: 18px; min-height: 48px; }
-  .fab svg { width: 18px; height: 18px; }
+  /* phones: icon only, like Emerald's small side tab, so it doesn't cover content */
+  .fab { left: 12px; bottom: 14px; width: 52px; height: 52px; min-height: 0; padding: 0; justify-content: center; }
+  .fab span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .fab svg { width: 22px; height: 22px; }
   .panel { width: 100vw; }
   .inner { gap: 18px; padding: 20px 16px 28px; }
   .kicker { margin-bottom: 4px; }

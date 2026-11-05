@@ -6,16 +6,16 @@
 .lead { display: flex; align-items: center; gap: 1.4vw; font-size: 6.4vw; font-weight: 300; line-height: 1; }
 .mark { display: inline-flex; align-items: center; gap: 0; order: 2; }
 .mark span { width: 7vw; height: 1px; background: var(--ink); }
-.big { font-size: 9.2vw; font-weight: 700; line-height: 0.95; }
+.big { font-size: 7.4vw; font-weight: 700; line-height: 0.95; white-space: nowrap; }
 .text { width: 40vw; margin-top: 2.4vw; font-size: 1.5vw; line-height: 1.2; }
 .text p { margin: 0 0 1vw; }
 .vision { display: grid; grid-template-columns: 30vw minmax(0, 42vw); justify-content: space-between; align-items: center; padding: 5vw 0 7vw; }
 @media (max-width: 1024px) {
   .hero { height: auto; min-height: 0; display: flex; flex-direction: column-reverse; padding: 92px 0 40px; }
   .heroText { position: relative; top: auto; right: auto; width: auto; padding: 0 16px; }
-  .lead { font-size: 52px; gap: 14px; }
+  .lead { font-size: 42px; gap: 14px; }
   .mark span { width: 48px; }
-  .big { font-size: 74px; }
+  .big { font-size: min(64px, 16vw); }
   .text { width: auto; font-size: 19px; line-height: 1.35; margin-top: 18px; }
   .vision { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
 }

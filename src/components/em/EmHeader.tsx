@@ -44,7 +44,7 @@ export function EmHeader({ onPhoto = false }: { onPhoto?: boolean }) {
 
   useGSAP(() => {
     const st = { trigger: document.documentElement, start: 0, end: 100, scrub: true };
-    gsap.to(root.current, { '--hb': 0.8, '--lb': 1, '--li': 0, '--blur': '5px', height: () => (innerWidth > 1024 ? innerWidth * 0.04 : 50), ease: 'none', scrollTrigger: st });
+    gsap.to(root.current, { '--hb': 0.8, '--lb': 1, '--li': 0, '--blur': '5px', height: () => (innerWidth > 1280 ? innerWidth * 0.04 : 50), ease: 'none', scrollTrigger: st });
     gsap.to(`.${s.logo} img`, { scale: 0.9, ease: 'none', scrollTrigger: st });
   }, { scope: root });
 
@@ -77,7 +77,7 @@ export function EmHeader({ onPhoto = false }: { onPhoto?: boolean }) {
           <Link key={n.href} href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</Link>
         ))}
       </nav>
-      <a className={`${em.poly} ${s.call}`} href={tel}><Phone aria-hidden strokeWidth={1.6} />חייגו {PHONE}</a>
+      <a className={`${em.poly} ${s.call}`} href={tel} aria-label={`חייגו ${PHONE}`}><Phone aria-hidden strokeWidth={1.6} /><span className={s.callWord}>חייגו </span><span dir="ltr">{PHONE}</span></a>
       <button type="button" className={s.burger} aria-expanded={open} aria-controls="em-menu" aria-label="פתיחת התפריט" onClick={() => setOpen(true)}>
         <span /><span /><span />
       </button>

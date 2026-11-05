@@ -198,6 +198,7 @@ li[data-open] .answer { grid-template-rows: 1fr; }
   .storyPanel p { font-size: 18px; line-height: 1.35; }
 }
 @media (max-width: 767px) {
-  .carTrack img { height: 34vw; }
+  .car { padding-top: 60px; }
+  .carTrack img { height: 74vw; }
 }
 @media (prefers-reduced-motion: reduce) { .answer { transition: none; } .piece { transition: none; } }

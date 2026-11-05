@@ -135,5 +135,11 @@
   .prose ul { padding-inline-start: 20px; margin-bottom: 14px; }
   .prose blockquote { font-size: 22px; margin: 22px 0; padding-inline-start: 16px; }
 }
+@media (max-width: 420px) {
+  .ruleRow h1, .ruleRow h2, .ruleRow p { font-size: 28px; line-height: 1.1; }
+}
 .ruleRow h2, .ruleRow > p { white-space: nowrap; }
-@media (max-width: 767px) { .ruleRow h2, .ruleRow > p { white-space: normal; } }
+@media (max-width: 767px) {
+  .ruleRow h2, .ruleRow > p { white-space: normal; flex-shrink: 0; max-width: calc(100% - 76px); text-align: center; text-wrap: balance; }
+  .ruleRow .line { flex: 0 1 28px; min-width: 10px; }
+}

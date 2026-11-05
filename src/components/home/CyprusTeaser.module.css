@@ -4,7 +4,7 @@
 .lead { display: flex; align-items: center; gap: 1.2vw; font-size: 4.6vw; font-weight: 300; line-height: 1; }
 .lead > span { order: 2; width: 6vw; height: 1px; background: var(--ink); }
 .lead > i { order: 3; margin-inline-start: -1.2vw; }
-.title strong { font-size: 7vw; font-weight: 700; line-height: 0.95; }
+.title strong { font-size: 5.8vw; font-weight: 700; line-height: 0.95; white-space: nowrap; }
 .lede { margin: 0; max-width: 34vw; line-height: 1.3; }
 .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7vw; font-size: var(--fs-small); color: var(--ink-2); }
 .list li { display: flex; align-items: center; gap: 0.8vw; }

@@ -33,7 +33,8 @@ export function MarqueeHero({ lead, strong, children, left, right }: {
         </div>
       </div>
       <div className={s.center}>
-        <h1 className={s.title}>
+        {/* --ll/--sl: letter counts, so each line is sized to fit the centre column whatever the word */}
+        <h1 className={s.title} style={{ ['--ll' as string]: lead.length, ['--sl' as string]: strong.length }}>
           <span className={s.lead}><i className={em.diamond} />{lead}<i className={em.diamond} /></span>
           <span className={s.big}>{strong}</span>
         </h1>

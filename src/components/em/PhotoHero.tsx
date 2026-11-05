@@ -13,7 +13,7 @@ export function PhotoHero({ img, kicker, title, children, action }: { img: strin
       <img className={s.bg} src={img} alt="" />
       <div className={s.inner}>
         <div className={`${em.ruleRow} ${s.kick}`}><i className={em.diamond} /><span className={em.line} /><p>{kicker}</p><span className={em.line} /><i className={em.diamond} /></div>
-        <h1 className={s.title}>{title}</h1>
+        <h1 className={s.title} style={{ ['--tl' as string]: title.length }}>{title}</h1>
         {children && <div className={s.text}>{children}</div>}
         {action && <div className={s.action}>{action}</div>}
       </div>
