@@ -13,11 +13,11 @@
   padding: 0.5vw 1vw; background: var(--glass); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
   transition: 0.5s;
 }
-.row { display: flex; justify-content: space-between; align-items: center; gap: 1vw; font-size: 1.5vw; line-height: 1.2; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 1vw; font-size: 1.2vw; line-height: 1.25; }
 .name { font-weight: 700; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .place { display: inline-flex; align-items: center; gap: 0.3vw; flex: none; white-space: nowrap; }
-.place svg { width: 1.3vw; height: 1.3vw; }
-.desc { max-height: 0; opacity: 0; overflow: hidden; font-size: 1.5vw; line-height: 1.2; transition: opacity 0.5s, max-height 1s; }
+.place svg { width: 1.1vw; height: 1.1vw; }
+.desc { max-height: 0; opacity: 0; overflow: hidden; font-size: 1.15vw; line-height: 1.2; transition: opacity 0.5s, max-height 1s; }
 .card:hover .desc, .card:focus-visible .desc { max-height: 50px; opacity: 1; }
 .card:focus-visible { outline-offset: 4px; }
 
@@ -26,7 +26,7 @@
   .mark { inset: 0 0 44px; }
   .mark img { width: 160px; height: 90px; }
   .bar { padding: 7px 14px; gap: 6px; }
-  .row { font-size: 20px; gap: 10px; }
+  .row { font-size: 17px; gap: 10px; }
   .place svg { width: 17px; height: 17px; }
   .desc { font-size: 17px; }
 }

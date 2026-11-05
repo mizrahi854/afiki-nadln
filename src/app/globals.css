@@ -14,7 +14,7 @@
   --gutter: max(16px, 5.2vw);
   --serif: var(--font-serif), 'Frank Ruhl Libre', serif;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --font: var(--font-rubik), 'Rubik', system-ui, sans-serif;
+  --font: var(--font-heebo), 'Heebo', system-ui, sans-serif;
   --s: 1; /* canvas scale, set before paint in layout.tsx */
 }
 

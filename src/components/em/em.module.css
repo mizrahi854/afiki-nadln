@@ -22,7 +22,7 @@
   --fs-h3: 2vw;
   --fs-btn: 1.3vw;
   --fs-small: 1.1vw;
-  --font-em: var(--font-narrow), 'Noto Sans Hebrew', system-ui, sans-serif;
+  --font-em: var(--font-heebo), 'Heebo', system-ui, sans-serif;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-em);

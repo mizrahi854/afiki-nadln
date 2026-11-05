@@ -7,7 +7,7 @@
 .viewport { position: relative; height: 100vh; height: 100svh; min-height: 600px; overflow: hidden; background: #a9c9e6; }
 .canvas {
   position: absolute; top: 0; left: 50%; width: 1536px; height: 1024px; margin-left: -768px;
-  transform: scale(var(--hs, 1)); transform-origin: 50% 0; direction: ltr; font-family: var(--font-rubik), sans-serif; font-stretch: 100%;
+  transform: scale(var(--hs, 1)); transform-origin: 50% 0; direction: ltr; font-family: var(--font-heebo), sans-serif; font-stretch: 100%;
 }
 .canvas > * { position: absolute; }
 .photo { left: 0; top: 0; width: 1536px; height: 1024px; }
@@ -42,7 +42,7 @@
 
 /* ---------- dock ---------- */
 .dock { position: absolute; z-index: 5; right: 3.4vw; left: 3.4vw; bottom: 0.9vw; display: grid; justify-items: stretch; }
-.above { display: flex; align-items: flex-end; justify-content: space-between; gap: 2vw; margin-bottom: 1.1vw; font-family: var(--font-rubik), sans-serif; font-stretch: 100%; }
+.above { display: flex; align-items: flex-end; justify-content: space-between; gap: 2vw; margin-bottom: 1.1vw; font-family: var(--font-heebo), sans-serif; font-stretch: 100%; }
 .tagline { margin: 0 0 0.2vw; color: #fff; font-size: max(17px, 1.37vw); font-weight: 500; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); }
 .media { display: flex; align-items: flex-end; gap: 1.3vw; }
 
@@ -111,7 +111,7 @@
 .down:hover { background: #fff; color: var(--ink); }
 
 /* full-screen video */
-.dialog { width: 100vw; height: 100svh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(10, 10, 10, 0.96); color: #fff; direction: rtl; font-family: var(--font-rubik), sans-serif; font-stretch: 100%; }
+.dialog { width: 100vw; height: 100svh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(10, 10, 10, 0.96); color: #fff; direction: rtl; font-family: var(--font-heebo), sans-serif; font-stretch: 100%; }
 .dialog[open] { display: grid; grid-template-rows: 1fr auto; animation: fadein 0.3s ease; }
 .dialog::backdrop { background: transparent; }
 .figure { position: relative; margin: 24px; }
@@ -147,7 +147,7 @@
   .dashes i[data-on] { background: var(--ink); }
   .search { --c: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px)); --frame-line: var(--ink); --frame-fill: #fff; width: auto; margin: 0; padding: 16px 14px; }
   .searchHead { flex-direction: row; gap: 10px; margin-bottom: 12px; }
-  .searchTitle { font-size: 21px; }
+  .searchTitle { font-size: 19px; }
   .tabs { gap: 8px; }
   .tab { --cut: 6px; padding: 10px 14px; min-height: 40px; font-size: 15px; }
   .row { flex-direction: column; gap: 10px; }
