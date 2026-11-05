@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Phone, Mail, MapPin, X, ChevronDown } from 'lucide-react';
 import { PHONE } from '@/lib/content';
-import { EMAIL, ADDRESS } from '@/lib/data';
+import { EMAIL, ADDRESS } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { nav, type NavItem } from './nav';
 import em from './em.module.css';

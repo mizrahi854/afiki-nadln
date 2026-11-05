@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { testimonials } from '@/lib/data';
+import { testimonials } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { Rule } from '../em/Rule';
 import em from '../em/em.module.css';

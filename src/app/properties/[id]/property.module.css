@@ -6,6 +6,8 @@
 .features li { display: inline-flex; align-items: center; gap: 0.4vw; }
 .features svg { width: 1.2vw; height: 1.2vw; }
 .more { padding: 3vw 0 6vw; }
+.sold { margin: 1.4vw 0 0; display: flex; align-items: center; gap: 0.8vw; font-size: var(--fs-body); color: var(--ink-2); }
+.sold span { padding: 0.4vw 1vw; background: var(--brand); color: var(--on-brand); font-weight: 700; font-size: 1.6vw; clip-path: polygon(0.5vw 0, 100% 0, 100% calc(100% - 0.5vw), calc(100% - 0.5vw) 100%, 0 100%, 0 0.5vw); }
 .mortgage { padding: 2vw 0 6vw; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4vw; scroll-margin-top: 6vw; }
 .mortgageLede { margin: 0 auto; max-width: 52vw; text-align: center; color: var(--ink-2); }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4vw 2vw; margin-top: 3vw; }
@@ -16,6 +18,8 @@
   .features { max-width: none; font-size: 17px; gap: 10px 18px; }
   .features svg { width: 16px; height: 16px; }
   .more { padding: 24px 0 56px; }
+  .sold { margin-top: 14px; gap: 10px; }
+  .sold span { padding: 6px 14px; font-size: 20px; }
   .mortgage { padding: 16px 0 56px; gap: 22px; scroll-margin-top: 80px; }
   .mortgageLede { max-width: none; }
   .grid { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }

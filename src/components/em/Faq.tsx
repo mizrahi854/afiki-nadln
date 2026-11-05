@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Plus, Phone, Mail } from 'lucide-react';
 import { PHONE } from '@/lib/content';
-import { EMAIL } from '@/lib/data';
+import { EMAIL } from '@/lib/core';
 import { Rule, Rich } from './Rule';
 import em from './em.module.css';
 import s from './blocks.module.css';

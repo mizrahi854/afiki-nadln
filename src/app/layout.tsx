@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Heebo, Frank_Ruhl_Libre } from 'next/font/google';
 import './globals.css';
+import { SiteMotion } from '@/components/SiteMotion';
 
 // Heebo: the site's one sans (Hebrew and Latin), chosen by the client. Variable 100–900, no faux bold.
 const heebo = Heebo({ subsets: ['hebrew', 'latin'], variable: '--font-heebo', display: 'swap' });
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: scaleScript }} />
       </head>
-      <body>{children}</body>
+      <body>{children}<SiteMotion /></body>
     </html>
   );
 }

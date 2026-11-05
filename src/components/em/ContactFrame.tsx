@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { EMAIL } from '@/lib/data';
+import { EMAIL } from '@/lib/core';
 import { Rule } from './Rule';
 import em from './em.module.css';
 import s from './blocks.module.css';

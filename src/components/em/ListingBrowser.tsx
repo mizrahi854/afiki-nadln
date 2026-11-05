@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Search, X } from 'lucide-react';
-import { type Listing, kindLabels, kindOf, price, type Kind } from '@/lib/data';
+import { type Listing, kindLabels, kindOf, price, type Kind } from '@/lib/core';
 import { EmCard } from './EmCard';
 import s from './ListingBrowser.module.css';
 
@@ -15,7 +15,7 @@ const areaOf = (l: Listing) => l.area ?? l.city;
  * neighborhood. Emerald's projects page has no filters; the row is built from Emerald's own pieces (links at 50%
  * that go full with a stroke, 1px rules), and the state lives in the URL so the page doubles as search results.
  */
-export function ListingBrowser({ items }: { items: Listing[] }) {
+export function ListingBrowser({ items, noun = 'נכסים למכירה' }: { items: Listing[]; noun?: string }) {
   const params = useSearchParams();
   const router = useRouter();
   const path = usePathname();
@@ -77,7 +77,7 @@ export function ListingBrowser({ items }: { items: Listing[] }) {
         </label>
       </form>
       <div className={s.meta}>
-        <p aria-live="polite">{shown.length === items.length ? `${items.length} נכסים למכירה` : `${shown.length} מתוך ${items.length} נכסים`}</p>
+        <p aria-live="polite">{shown.length === items.length ? `${items.length} ${noun}` : `${shown.length} מתוך ${items.length} נכסים`}</p>
         {any && <button type="button" onClick={() => { setQ(''); router.replace(`${path}#all`, { scroll: false }); }}><X aria-hidden strokeWidth={1.5} />ניקוי הסינון</button>}
       </div>
 

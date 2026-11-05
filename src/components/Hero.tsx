@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowDown, MapPin, Home, LayoutGrid, Wallet, ChevronDown, Play, Search, X } from 'lucide-react';
 import { SITE } from '@/lib/content';
-import { forSale, kindLabels } from '@/lib/data';
+import { kindLabels } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
 import em from './em/em.module.css';
 import s from './Hero.module.css';
@@ -13,8 +13,8 @@ const tabs = [
   { id: 'sale', label: 'למכירה', action: '/properties#all' },
   { id: 'rent', label: 'להשכרה', action: `${SITE}/for-rent/` },
 ] as const;
-const areas = Array.from(new Set(forSale.map((l) => l.area).filter((a): a is string => !!a)));
-const fields = [
+/** The four search fields; the neighborhoods come from the listings (passed in by the page, so the data stays on the server) */
+const fieldsFor = (areas: string[]) => [
   { id: 'area', icon: MapPin, label: 'שכונה', options: [['all', 'כל השכונות'], ...areas.map((a) => [a, a])] },
   { id: 'kind', icon: Home, label: 'סוג הנכס', options: kindLabels.map((k) => [k.id, k.id === 'all' ? 'כל הנכסים' : k.label]) },
   { id: 'rooms', icon: LayoutGrid, label: 'חדרים', options: [['all', 'לבחירתכם'], ['3', '3+ חדרים'], ['4', '4+ חדרים'], ['5', '5+ חדרים'], ['6', '6+ חדרים']] },
@@ -33,8 +33,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
  * the Psagot Afek tag) sit on a 1536×1024 canvas that covers the viewport from the top; the video card, the line
  * and the search sit on the screen itself, above its bottom edge. The header is the shared site header.
  */
-export function Hero() {
+export function Hero({ areas }: { areas: string[] }) {
   const root = useRef<HTMLDivElement>(null);
+  const fields = fieldsFor(areas);
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
   const [tab, setTab] = useState<(typeof tabs)[number]['id']>('sale');

@@ -11,6 +11,10 @@ export const nav: NavItem[] = [
       { label: 'דירות גן', href: '/properties?kind=garden#all' },
       { label: 'פנטהאוזים', href: '/properties?kind=penthouse#all' },
       { label: 'בתים פרטיים וקוטג׳ים', href: '/properties?kind=house#all' },
+      { label: 'בתים עם גינה', href: '/gardens' },
+      { label: 'פסגות אילה – מכירה מוקדמת', href: '/psagot-ayala' },
+      { label: 'משרדים וחנויות בפסגות אפק', href: '/offices' },
+      { label: 'נכסים שנמכרו', href: '/sold' },
       { label: 'מחשבון משכנתא', href: '/calculator' },
     ],
   },
@@ -18,6 +22,7 @@ export const nav: NavItem[] = [
     label: 'מוכרים נכס?', href: '/sell', children: [
       { label: 'איך אנחנו מוכרים', href: '/sell' },
       { label: 'הערכת שווי נכס', href: '/sell#talk-title' },
+      { label: 'נכסים שנמכרו', href: '/sold' },
       { label: 'איך מוכרים דירה כשיש עוד 10 כמוה', href: '/articles/9186' },
     ],
   },
@@ -29,11 +34,14 @@ export const nav: NavItem[] = [
       { label: 'נווה אפק', href: '/neighborhoods/neve-afek' },
       { label: 'גבעת הסלעים', href: '/neighborhoods/givat-haslaim' },
       { label: 'מצפה אפק', href: '/neighborhoods/mitzpe-afek' },
+      { label: 'משכנות המוזיקה (ותיקה)', href: '/neighborhoods/vatika' },
+      { label: 'הישוב מתן', href: '/matan' },
     ],
   },
   { label: 'השקעות בקפריסין', href: '/cyprus' },
   {
     label: 'מדריכים ובלוג', href: '/articles', children: [
+      { label: 'מדריכים מקצועיים', href: '/guides' },
       { label: 'כך תבצעו עסקת נדל״ן נכונה', href: '/articles/8326' },
       { label: 'דירה להשקעה: מה לבדוק', href: '/articles/9387' },
       { label: 'מחזור משכנתא', href: '/articles/9147' },

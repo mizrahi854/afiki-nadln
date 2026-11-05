@@ -33,7 +33,7 @@ export const hoods = [
   { slug: 'givat-tal', name: 'גבעת טל', img: '/media/hoods/givat-tal.webp', line: 'השכונה המבוקשת בעיר: בתים פרטיים על מגרשים של עד דונם.' },
   { slug: 'psagot-afek', name: 'פסגות אפק', img: '/media/hoods/psagot.webp', line: 'דירות חדשות בסטנדרט גבוה, מוקד לזוגות צעירים ומשפרי דיור.' },
   { slug: 'nofarim', name: 'נופרים (נצבא)', img: '/media/hoods/nofarim.webp', line: '19 בניינים של עד 18 קומות סביב פארק ירוק.' },
-  { slug: '', name: 'ותיקה ומשכנות המוזיקה', img: '/media/hoods/vatika.webp', line: 'בנייה חדשה בלב העיר הוותיקה, פארק ואמפיתיאטרון.' },
+  { slug: 'vatika', name: 'ותיקה ומשכנות המוזיקה', img: '/media/hoods/vatika.webp', line: 'בנייה חדשה בלב העיר הוותיקה, פארק ואמפיתיאטרון.' },
   { slug: 'givat-haslaim', name: 'גבעת הסלעים', img: '/media/hoods/givat-haslaim.webp', line: 'שכונה שקטה ומבוססת, כ־3,000 תושבים.' },
 ];
 

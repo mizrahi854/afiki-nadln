@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { cyprus } from '@/lib/data';
+import { cyprus } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
 import em from '../em/em.module.css';
 import s from './CyprusTeaser.module.css';

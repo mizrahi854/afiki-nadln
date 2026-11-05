@@ -9,14 +9,14 @@ import { ContactFrame } from '@/components/em/ContactFrame';
 import { Rule } from '@/components/em/Rule';
 import { Calculator } from '@/components/em/Calculator';
 import { MortgageFab } from '@/components/home/MortgageFab';
-import { listings, forSale, getListing, place, price, slugForArea } from '@/lib/data';
+import { listings, sold, forSale, getListing, isSold, place, price, slugForArea } from '@/lib/data';
 import { PHONE } from '@/lib/content';
 import em from '@/components/em/em.module.css';
 import b from '@/components/em/blocks.module.css';
 import s from './property.module.css';
 
 export function generateStaticParams() {
-  return listings.map((l) => ({ id: String(l.id) }));
+  return [...listings, ...sold].map((l) => ({ id: String(l.id) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -34,6 +34,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
   const hood = slugForArea(l.area);
   const wa = `https://wa.me/972${PHONE.replace(/-/g, '').slice(1)}?text=${encodeURIComponent(`שלום, אשמח לפרטים על הנכס: ${l.title}`)}`;
   const gallery = l.images.length > 1 ? l.images : [...l.images, ...l.images];
+  const done = isSold(l);
 
   return (
     <div className={em.page}>
@@ -46,11 +47,11 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
             <div className={`${em.frame} ${b.titleBox}`}>
               <div className={em.ruleRow}><i className={em.diamond} /><span className={em.line} /><h1>{l.title}</h1><span className={em.line} /><i className={em.diamond} /></div>
             </div>
-            <p className={s.price}>{price(l.price)}</p>
+            {done ? <p className={s.sold}><span>נמכר</span> על ידי אפיקי נדל״ן</p> : <p className={s.price}>{price(l.price)}</p>}
             <div className={s.actions}>
               <a className={em.poly} href={`tel:${PHONE.replace(/-/g, '')}`}><Phone aria-hidden strokeWidth={1.4} />חייגו {PHONE}</a>
               <a className={`${em.poly} ${s.ghost}`} href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden strokeWidth={1.4} />וואטסאפ</a>
-              {l.price && <a className={`${em.poly} ${s.ghost}`} href="#mortgage"><CalcIcon aria-hidden strokeWidth={1.4} />חישוב משכנתא</a>}
+              {l.price && !done && <a className={`${em.poly} ${s.ghost}`} href="#mortgage"><CalcIcon aria-hidden strokeWidth={1.4} />חישוב משכנתא</a>}
             </div>
           </div>
           <div>
@@ -86,7 +87,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
           </section>
         )}
 
-        {l.price && (
+        {l.price && !done && (
           <section id="mortgage" className={`${em.wrap} ${s.mortgage}`} aria-labelledby="mortgage-title" data-mortgage-inline>
             <Rule kicker="כמה זה יעלה לי בחודש?" title="מחשבון משכנתא לנכס" id="mortgage-title" />
             <p className={s.mortgageLede}>המחשבון כבר מוזן במחיר הנכס, {price(l.price)}, עם 25% הון עצמי. שנו את המספרים ותראו את ההחזר החודשי.</p>
@@ -94,7 +95,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
           </section>
         )}
 
-        <ContactFrame title="מתעניינים בנכס הזה?" subject={l.title} />
+        <ContactFrame title={done ? 'מחפשים נכס דומה?' : 'מתעניינים בנכס הזה?'} subject={l.title} />
 
         <section className={`${em.wrap} ${s.more}`} aria-labelledby="more-title">
           <Rule title="נכסים נוספים" id="more-title" />
@@ -107,7 +108,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
         </section>
       </main>
       <EmFooter />
-      {l.price && <MortgageFab base={{ price: l.price, title: l.title }} />}
+      {l.price && !done && <MortgageFab base={{ price: l.price, title: l.title }} />}
     </div>
   );
 }

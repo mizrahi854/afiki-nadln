@@ -6,6 +6,8 @@ import { Hoods } from '@/components/Hoods';
 import { Testimonials } from '@/components/home/Testimonials';
 import { MortgageFab } from '@/components/home/MortgageFab';
 import { CyprusTeaser } from '@/components/home/CyprusTeaser';
+import { SoldStrip } from '@/components/home/SoldStrip';
+import { BannerBand } from '@/components/home/BannerBand';
 import { Calculator, type Preset } from '@/components/em/Calculator';
 import { EmHeader } from '@/components/em/EmHeader';
 import { EmFooter } from '@/components/em/EmFooter';
@@ -24,6 +26,7 @@ const facts = (l: (typeof forSale)[number]) => [price(l.price), l.rooms && `${l.
 const picks = forSale.filter((l) => l.images.length > 3 && kindOf(l) !== 'land' && l.id !== 9340).slice(0, 6);
 const presets: Preset[] = forSale.filter((l) => l.price && kindOf(l) !== 'land').map((l) => ({ id: l.id, label: l.title, price: l.price! }));
 const guide = articles.find((a) => a.title.includes('משכנתא'));
+const areas = Array.from(new Set(forSale.map((l) => l.area).filter((a): a is string => !!a)));
 const lede = aboutSections[0].p[0].split(/(?<=[.!])\s+/).slice(0, 3).join(' ');
 
 /* What the office does; every line is the home page copy on afikeynadlan.co.il */
@@ -39,7 +42,7 @@ export default function Page() {
     <div className={em.page}>
       <EmHeader />
       <main>
-        <Hero />
+        <Hero areas={areas} />
 
         <section className={`${em.wrap} ${h.listings}`} aria-labelledby="featured-title">
           <div className={em.headRow}>
@@ -51,6 +54,8 @@ export default function Page() {
             {picks.map((l) => <EmCard key={l.id} href={`/properties/${l.id}`} img={l.images[0]} name={l.title} place={l.area ?? l.city} desc={facts(l)} />)}
           </div>
         </section>
+
+        <SoldStrip />
 
         <HoodScene />
         <Hoods overlap />
@@ -77,6 +82,8 @@ export default function Page() {
         </section>
 
         <CyprusTeaser />
+
+        <BannerBand />
 
         <section className={h.services} aria-labelledby="services-title">
           <div className={em.splitHead}>
