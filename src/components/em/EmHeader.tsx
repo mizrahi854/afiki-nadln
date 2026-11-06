@@ -3,15 +3,18 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { Phone, Mail, MapPin, X, ChevronDown } from 'lucide-react';
+import { Phone, Mail, MapPin, X, ChevronDown, MessageCircle } from 'lucide-react';
 import { PHONE } from '@/lib/content';
 import { EMAIL, ADDRESS } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { nav, type NavItem } from './nav';
+import { ContactLink } from './ContactLink';
 import em from './em.module.css';
 import s from './EmHeader.module.css';
 
 const tel = `tel:${PHONE.replace(/-/g, '')}`;
+const wa = `https://wa.me/972${PHONE.replace(/-/g, '').slice(1)}`;
+const isContact = (href: string) => href.includes('#talk-title');
 
 /**
  * Emerald's header: fixed, transparent over the page top; over the first 100px of scroll it scrubs to a
@@ -73,39 +76,51 @@ export function EmHeader({ onPhoto = false }: { onPhoto?: boolean }) {
               </ul>
             </div>
           </div>
+        ) : isContact(n.href) ? (
+          <ContactLink key={n.href}>{n.label}</ContactLink>
         ) : (
           <Link key={n.href} href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</Link>
         ))}
       </nav>
-      <a className={`${em.poly} ${s.call}`} href={tel} aria-label={`חייגו ${PHONE}`}><Phone aria-hidden strokeWidth={1.6} /><span className={s.callWord}>חייגו </span><span dir="ltr">{PHONE}</span></a>
+      <a className={`${em.poly} ${s.call}`} href={tel} aria-label={`חייגו ${PHONE}`}><Phone aria-hidden strokeWidth={1.6} /><span className={s.callWord}>חייגו </span><span dir="ltr" className={s.callNum}>{PHONE}</span></a>
       <button type="button" className={s.burger} aria-expanded={open} aria-controls="em-menu" aria-label="פתיחת התפריט" onClick={() => setOpen(true)}>
-        <span /><span /><span />
+        <span /><span />
       </button>
 
+      {/* phones: a full-height white sheet; big links on hairlines, groups open in place, call + WhatsApp at the bottom */}
       <div id="em-menu" className={s.menu} hidden={!open} role="dialog" aria-modal="true" aria-label="תפריט">
-        <div className={s.panel}>
-          <button type="button" className={s.close} aria-label="סגירת התפריט" onClick={() => setOpen(false)}><X aria-hidden /></button>
+        <div className={s.sheetTop}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={s.menuLogo} src="/media/brand/logo.png" alt="אפיקי נדל״ן" />
-          <nav aria-label="ניווט במובייל" className={s.menuNav}>
-            {nav.map((n) => n.children ? (
-              <div key={n.href} className={s.menuGroup} data-open={sub === n.href || undefined}>
-                <div className={s.menuRow}>
-                  <Link href={n.href} aria-current={hereIn(n) ? 'page' : undefined}>{n.label}</Link>
+          <button type="button" className={s.close} aria-label="סגירת התפריט" onClick={() => setOpen(false)}><X aria-hidden strokeWidth={1.5} /></button>
+        </div>
+        <nav aria-label="ניווט במובייל" className={s.menuNav}>
+          {nav.map((n, i) => (
+            <div key={n.href} className={s.menuGroup} data-open={sub === n.href || undefined} style={{ ['--i' as string]: i }}>
+              <div className={s.menuRow}>
+                {isContact(n.href)
+                  ? <ContactLink onClick={() => setOpen(false)}>{n.label}</ContactLink>
+                  : <Link href={n.href} aria-current={hereIn(n) ? 'page' : undefined} onClick={() => setOpen(false)}>{n.label}</Link>}
+                {n.children && (
                   <button type="button" aria-expanded={sub === n.href} aria-controls={`sub-${n.href}`} aria-label={`פתיחת ${n.label}`}
-                    onClick={() => setSub((x) => (x === n.href ? null : n.href))}><ChevronDown aria-hidden strokeWidth={1.6} /></button>
-                </div>
+                    onClick={() => setSub((x) => (x === n.href ? null : n.href))}><ChevronDown aria-hidden strokeWidth={1.5} /></button>
+                )}
+              </div>
+              {n.children && (
                 <ul id={`sub-${n.href}`} hidden={sub !== n.href}>
                   {n.children.map((c) => <li key={c.href}><Link href={c.href} onClick={() => setOpen(false)}>{c.label}</Link></li>)}
                 </ul>
-              </div>
-            ) : <Link key={n.href} href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</Link>)}
-          </nav>
-          <div className={s.menuInfo}>
+              )}
+            </div>
+          ))}
+        </nav>
+        <div className={s.menuFoot}>
+          <a className={s.menuCall} href={tel}><Phone aria-hidden strokeWidth={1.6} /><span dir="ltr">{PHONE}</span></a>
+          <a className={s.menuWa} href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden strokeWidth={1.6} />וואטסאפ</a>
+          <p className={s.menuInfo}>
             <a href={`mailto:${EMAIL}`}><Mail aria-hidden strokeWidth={1.4} />{EMAIL}</a>
             <span><MapPin aria-hidden strokeWidth={1.4} />{ADDRESS}</span>
-          </div>
-          <a className={`${em.poly} ${s.menuCall}`} href={tel}><Phone aria-hidden strokeWidth={1.6} />חייגו {PHONE}</a>
+          </p>
         </div>
       </div>
     </header>

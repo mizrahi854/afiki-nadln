@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, MessageCircle } from 'lucide-react';
+import { PHONE } from '@/lib/content';
 import { EMAIL } from '@/lib/core';
 import { Rule } from './Rule';
 import em from './em.module.css';
@@ -38,6 +39,9 @@ export function ContactFrame({ title = 'בואו נמצא לכם את הבית �
           <button className={em.poly} type="submit"><ArrowLeft aria-hidden strokeWidth={1.4} />שליחת פרטים</button>
           <label className={s.consent}><input type="checkbox" required name="הסכמה" /> אני מאשר/ת שיחזרו אליי בנוגע לפנייה</label>
         </form>
+        <a className={s.wa} href={`https://wa.me/972${PHONE.replace(/-/g, '').slice(1)}`} target="_blank" rel="noopener noreferrer">
+          <MessageCircle aria-hidden strokeWidth={1.5} />מעדיפים וואטסאפ? כתבו ליוסי ישירות
+        </a>
         <p className={s.sent} aria-live="polite">{sent ? 'נפתחה הודעת אימייל עם הפרטים. אם לא נפתחה, אפשר לכתוב ישירות ל־' + EMAIL : ''}</p>
       </div>
     </section>

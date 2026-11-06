@@ -40,3 +40,19 @@
   .aboutTitle strong { font-size: 64px; }
   .aboutText { max-width: none; font-size: 19px; line-height: 1.4; }
 }
+
+/* about: the three counters sit in the text column, between the text and the button */
+.stats { list-style: none; margin: 0.4vw 0 0.6vw; padding: 0; display: grid; grid-template-columns: repeat(3, auto); gap: 3vw; }
+.stats li { display: grid; gap: 0.3vw; }
+.stats b { font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3.6vw; line-height: 1; direction: ltr; text-align: right; }
+.stats li > span { font-size: var(--fs-small); color: var(--ink-2); max-width: 11em; line-height: 1.25; }
+
+/* section 7 follows the pinned Psagot scene and slides up over its last screen */
+@media (prefers-reduced-motion: no-preference) {
+  .overStage { position: relative; z-index: 2; margin-top: -100vh; margin-top: -100svh; background: var(--bg); box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.35); }
+}
+@media (max-width: 1024px) {
+  .stats { gap: 20px; margin: 4px 0 8px; }
+  .stats b { font-size: 40px; }
+  .stats li > span { font-size: 14px; }
+}

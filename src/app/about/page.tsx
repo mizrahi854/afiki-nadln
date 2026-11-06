@@ -37,7 +37,7 @@ export default function AboutPage() {
           <Collage images={['/media/team/yossi.jpg', '/media/psagot/fly-2.jpg', '/media/listings/9237-0.jpg', '/media/team/moran.jpg', '/media/hoods/givat-tal.webp']} />
           <div className={s.heroText}>
             <h1 className={s.title}>
-              <span className={s.lead}><span className={s.mark} aria-hidden><i className={em.diamond} /><span /></span>משרד התיווך</span>
+              <span className={s.lead}>משרד התיווך</span>
               <span className={s.big}>בראש העין</span>
             </h1>
             <div className={s.text}><p>{lede}</p></div>

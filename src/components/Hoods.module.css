@@ -9,12 +9,15 @@
 /* two lines at the same size, like "• OUR / PROJECTS": a hairline ending in a diamond leads into the first word */
 .title { margin: 0; display: grid; justify-items: start; font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 4.6vw, 88px); line-height: 1; letter-spacing: -0.01em; color: var(--ink); }
 .first { display: inline-flex; align-items: center; gap: 0.3em; }
+.title > span { white-space: nowrap; } /* two lines, as before the hairline was removed */
 .first i { display: block; width: 2.1em; height: 1px; background: currentColor; position: relative; opacity: 0.55; }
 .first i::before { content: ''; position: absolute; right: -0.02em; top: 50%; width: 0.15em; height: 0.15em; background: var(--ink); transform: translate(50%, -50%) rotate(45deg); }
 
-.card { position: relative; display: block; height: calc(var(--img) + var(--bar)); overflow: hidden; background: #e9ecee; isolation: isolate; }
-.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: filter 0.5s ease, transform 1.2s var(--ease-out); }
-.veil { position: absolute; inset: 0; background: rgba(23, 48, 62, 0.28); opacity: 0; transition: opacity 0.5s ease; }
+.card { --mx: 0; --my: 0; position: relative; display: block; height: calc(var(--img) + var(--bar)); overflow: hidden; background: #fff; isolation: isolate; }
+/* the photo's window: inset 10px at rest, opens to the edges on hover; the photo has 14px of bleed for the drift */
+.win { position: absolute; inset: 0; overflow: hidden; clip-path: inset(10px 10px 0 10px); transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.card img { position: absolute; inset: -14px; width: calc(100% + 28px); height: calc(100% + 28px); max-width: none; object-fit: cover;
+  transform: translate(calc(var(--mx) * -10px), calc(var(--my) * -10px)) scale(1); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
 .mark {
   position: absolute; left: 50%; top: calc((100% - var(--bar)) / 2); width: clamp(54px, 4.4vw, 76px); aspect-ratio: 1; display: grid; place-items: center;
   translate: -50% -50%; color: var(--ink); opacity: 0; scale: 0.86; transition: opacity 0.5s ease, scale 0.6s var(--ease-out);
@@ -32,17 +35,22 @@
 .top { height: var(--bar); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .name { font-size: clamp(17px, 1.3vw, 25px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
 .city { display: inline-flex; align-items: center; gap: 6px; font-size: clamp(14px, 1.05vw, 20px); font-weight: 300; color: var(--ink-2); }
-.line { order: 2; display: block; max-height: 0; overflow: hidden; opacity: 0; transition: opacity 0.5s ease, max-height 1s var(--ease-out); }
-.line span { display: block; margin-top: -6px; padding-bottom: 14px; font-size: clamp(13px, 0.9vw, 15px); line-height: 1.5; color: var(--ink-2); }
+.line { order: 2; display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.line > span { min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: -6px;
+  font-size: clamp(13px, 0.9vw, 15px); line-height: 1.5; color: var(--ink-2); clip-path: inset(0 0 100% 0); transition: clip-path 0.42s cubic-bezier(0.22, 1, 0.36, 1); }
+.line svg { flex: none; color: var(--ink); transition: transform 0.3s var(--ease-out); }
 
 @media (hover: hover) {
-  .card:hover img { filter: blur(4px); transform: scale(1.04); }
-  .card:hover .veil, .card:hover .mark, .card:hover .line { opacity: 1; }
-  .card:hover .mark { scale: 1; }
-  .card:hover .line { max-height: 5em; }
+  .card:hover .win { clip-path: inset(0 0 0 0); }
+  .card:hover img { transform: translate(calc(var(--mx) * -10px), calc(var(--my) * -10px)) scale(1.08); }
+  .card:hover .line { grid-template-rows: 1fr; }
+  .card:hover .line > span { clip-path: inset(0 0 0 0); padding-bottom: 14px; transition-delay: 0.12s; }
+  .card:hover .line svg { transform: translateX(-6px); }
 }
-.card:focus-visible .veil, .card:focus-visible .mark, .card:focus-visible .line { opacity: 1; }
-.card:focus-visible .line { max-height: 5em; }
+.card:focus-visible .win { clip-path: inset(0 0 0 0); }
+.card:focus-visible img { transform: scale(1.08); }
+.card:focus-visible .line { grid-template-rows: 1fr; }
+.card:focus-visible .line > span { clip-path: inset(0 0 0 0); padding-bottom: 14px; }
 
 .all {
   display: flex; align-items: center; gap: 10px; width: max-content; margin: clamp(40px, 3.6vw, 64px) auto 0; height: 46px; padding: 0 22px;
@@ -66,7 +74,9 @@
   .mark { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .card img, .mark, .line { transition: none; }
+  .win, .card img { transition: none; }
+  .card:hover img, .card:focus-visible img { transform: none; }
+  .line, .line > span { transition-duration: 0.15s; transition-delay: 0s !important; }
 }
 
 /* on the home page this section follows the pinned flight and slides up over its last screen */

@@ -27,7 +27,7 @@ export function CyprusTeaser() {
       <div className={s.text}>
         <p className={em.kicker}>{cyprus.kicker}</p>
         <h2 id="cyprus-home-title" className={s.title}>
-          <span className={s.lead}><i className={em.diamond} aria-hidden /><span aria-hidden />השקעות</span>
+          <span className={s.lead}>השקעות</span>
           <strong>בקפריסין</strong>
         </h2>
         <p className={s.lede}>{cyprus.p[0]} יוסי מכהן היום כסמנכ״ל מכירות ב־Horizon Property Group, הפעילה בפאפוס משנת 2015.</p>

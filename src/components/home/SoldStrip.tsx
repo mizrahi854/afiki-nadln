@@ -25,7 +25,7 @@ export function SoldStrip() {
   return (
     <section className={s.section} aria-labelledby="sold-title" data-no-motion>
       <div className={`${em.wrap} ${em.headRow}`}>
-        <h2 id="sold-title">נמכרו לאחרונה.</h2>
+        <h2 id="sold-title">נכסים שמכרנו.</h2>
         <span className={em.rule} />
         <Link className={em.poly} href="/sold"><ArrowLeft aria-hidden strokeWidth={1.4} />לכל {sold.length} הנכסים שנמכרו</Link>
       </div>

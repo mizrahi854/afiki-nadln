@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { EmHeader } from '@/components/em/EmHeader';
 import { EmFooter } from '@/components/em/EmFooter';
+import { MortgageFab } from '@/components/home/MortgageFab';
 import { MarqueeHero } from '@/components/em/MarqueeHero';
 import { EmCard } from '@/components/em/EmCard';
 import { SlantStrips } from '@/components/em/SlantStrips';
-import { hoodPages, hoodCards, listingsIn } from '@/lib/data';
+import { hoodPages, hoodCards, listingsIn, forSale, kindOf } from '@/lib/data';
 import em from '@/components/em/em.module.css';
 import s from '../properties/properties.module.css';
 import g from './hoods.module.css';
@@ -57,6 +58,7 @@ export default function NeighborhoodsPage() {
         </section>
       </main>
       <EmFooter />
+      <MortgageFab presets={forSale.filter((l) => l.price && kindOf(l) !== 'land').map((l) => ({ id: l.id, label: l.title, price: l.price! }))} />
     </div>
   );
 }

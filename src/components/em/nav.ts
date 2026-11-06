@@ -50,5 +50,5 @@ export const nav: NavItem[] = [
     ],
   },
   { label: 'אודות', href: '/about' },
-  { label: 'צרו קשר', href: '/contact' },
+  { label: 'צרו קשר', href: '/#talk-title' }, // the contact block at the bottom of the page (see ContactLink)
 ];

@@ -43,7 +43,7 @@ export function MortgageFab({ presets, base = {} }: { presets?: Preset[]; base?:
     <>
       <button type="button" className={`${em.poly} ${s.fab}`} data-shown={shown || undefined} aria-hidden={!shown} tabIndex={shown ? 0 : -1} onClick={() => open(base)}>
         <CalcIcon aria-hidden strokeWidth={1.5} />
-        <span>מחשבון משכנתא</span>
+        <span>כמה זה יעלה לי בחודש?</span>
       </button>
 
       <dialog ref={dialog} className={`${em.page} ${s.panel}`} aria-labelledby="mortgage-title"
@@ -51,15 +51,15 @@ export function MortgageFab({ presets, base = {} }: { presets?: Preset[]; base?:
         <div className={s.inner}>
           <header className={s.top}>
             <div>
-              <p className={s.kicker}>כמה זה יעלה לי בחודש?</p>
-              <h2 id="mortgage-title" className={s.title}>מחשבון משכנתא</h2>
+              <p className={s.kicker}>מחשבון משכנתא</p>
+              <h2 id="mortgage-title" className={s.title}>כמה זה יעלה לי בחודש?</h2>
               {deal.title && <p className={s.for}>מחושב לנכס: <b>{deal.title}</b></p>}
             </div>
             <button type="button" className={s.close} onClick={() => dialog.current?.close()} aria-label="סגירת המחשבון"><X aria-hidden strokeWidth={1.5} /></button>
           </header>
           <Calculator key={run} compact defaultPrice={deal.price ?? 2500000} presets={deal.title ? undefined : presets} />
           <div className={s.links}>
-            <Link className={em.poly} href="/contact" onClick={() => dialog.current?.close()}><ArrowLeft aria-hidden strokeWidth={1.4} />לשיחה עם יוסי</Link>
+            <Link className={em.poly} href="/#talk-title" onClick={() => dialog.current?.close()}><ArrowLeft aria-hidden strokeWidth={1.4} />לשיחה עם יוסי</Link>
             <Link href="/calculator" className={s.full} onClick={() => dialog.current?.close()}>למחשבון המלא</Link>
           </div>
         </div>

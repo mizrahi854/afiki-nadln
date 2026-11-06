@@ -11,7 +11,7 @@ export type Strip = { title: string; text: string; img: string; href?: string; c
  */
 export function SlantStrips({ items }: { items: Strip[] }) {
   return (
-    <div className={s.row}>
+    <div className={s.row} data-n={items.length}>
       {items.map((it) => {
         const Tag = it.href ? Link : 'div';
         return (

@@ -5,8 +5,8 @@
 .carView { overflow: hidden; }
 .carTrack { display: flex; }
 .carTrack img { flex: 0 0 calc(100% / var(--per)); width: calc(100% / var(--per)); height: 35vw; object-fit: cover; }
-.carBtn { position: absolute; top: 50%; width: 4.25vw; height: 4.25vw; margin-top: -2.1vw; border: 0; padding: 0; background: #fff; color: var(--ink); cursor: pointer; transform: rotate(45deg); display: grid; place-items: center; }
-.carBtn span { transform: rotate(-45deg); display: grid; }
+.carBtn { position: absolute; top: 50%; width: 4.25vw; height: 4.25vw; margin-top: -2.1vw; border: 0; padding: 0; background: #fff; color: var(--ink); cursor: pointer; border-radius: 50%; display: grid; place-items: center; }
+.carBtn span { display: grid; }
 .carBtn svg { width: 1.4vw; height: 1.4vw; }
 .carPrev { right: 1vw; }
 .carNext { left: 1vw; }
@@ -50,6 +50,10 @@
 .form button { min-width: 15.2vw; justify-content: center; height: 3.75vw; }
 .consent { grid-column: 1 / -1; display: flex !important; align-items: center; gap: 0.6vw; font-size: 1.4vw; justify-self: start; }
 .consent input { width: 1vw; height: 1vw; accent-color: var(--brand); }
+.wa { display: inline-flex; align-items: center; gap: 0.7vw; margin-top: 1.6vw; padding: 0.7vw 1.4vw; border-radius: 999px; background: #25d366; color: #fff; font-size: 1.15vw; font-weight: 700; transition: background-color 0.25s; }
+.wa svg { width: 1.3vw; height: 1.3vw; }
+.wa:hover, .wa:focus-visible { background: #1ebe5a; }
+@media (max-width: 1024px) { .wa { gap: 10px; margin-top: 20px; padding: 12px 20px; font-size: 16px; min-height: 44px; } .wa svg { width: 18px; height: 18px; } }
 .sent { min-height: 1.4vw; margin: 1vw 0 0; font-size: 1.1vw; color: var(--ink-2); }
 
 /* ── Process: pinned, sideways steps (389 wide), photo 677 wide revealed by a mask ── */

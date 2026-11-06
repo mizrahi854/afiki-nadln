@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { EmHeader } from '@/components/em/EmHeader';
 import { EmFooter } from '@/components/em/EmFooter';
+import { MortgageFab } from '@/components/home/MortgageFab';
 import { MarqueeHero } from '@/components/em/MarqueeHero';
 import { ListingBrowser } from '@/components/em/ListingBrowser';
 import { SlantStrips, type Strip } from '@/components/em/SlantStrips';
@@ -63,6 +64,7 @@ export default function PropertiesPage() {
         </section>
       </main>
       <EmFooter />
+      <MortgageFab presets={forSale.filter((l) => l.price && kindOf(l) !== 'land').map((l) => ({ id: l.id, label: l.title, price: l.price! }))} />
     </div>
   );
 }

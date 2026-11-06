@@ -1,0 +1,21 @@
+.band { position: relative; overflow: hidden; isolation: isolate; min-height: 50vw; display: flex; align-items: center; padding: 4.5vw 13vw 4.5vw 0; }
+.bg { position: absolute; inset: -8% 0; z-index: -1; width: 100%; height: 116%; object-fit: cover; }
+.band::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to left, rgba(23, 48, 62, 0.18), rgba(23, 48, 62, 0) 55%); }
+.box {
+  position: relative; width: 36vw; padding: 4vw 3.6vw 3.4vw; display: grid; gap: 1.6vw; justify-items: start;
+  background: var(--brand); color: #fff;
+}
+.box::before { content: ''; position: absolute; top: 0; right: 0; width: 4.2vw; height: 3px; background: var(--lime); }
+.title { margin: 0; font-size: 3.6vw; font-weight: 300; line-height: 1.08; letter-spacing: -0.01em; }
+.text { margin: 0; font-size: 1.25vw; line-height: 1.55; color: rgba(255, 255, 255, 0.85); }
+.btn { margin-top: 0.6vw; }
+
+@media (max-width: 1024px) {
+  .band { min-height: 0; padding: 220px 16px 0; align-items: flex-end; }
+  .bg { inset: 0 0 auto; height: 300px; }
+  .band::after { display: none; }
+  .box { width: 100%; padding: 32px 22px 30px; gap: 16px; }
+  .box::before { width: 48px; }
+  .title { font-size: 34px; }
+  .text { font-size: 17px; }
+}

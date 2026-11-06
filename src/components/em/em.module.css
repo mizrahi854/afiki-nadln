@@ -41,8 +41,7 @@
 
 /* Faint vertical rules behind the hero blocks (source: an SVG of 1px lines every 115/1606 of the width at 10% opacity) */
 .lines {
-  background-image: repeating-linear-gradient(to left, transparent 0, transparent calc(7.16vw - 1px), rgba(23, 48, 62, 0.08) calc(7.16vw - 1px), rgba(23, 48, 62, 0.08) 7.16vw);
-  background-position: 6.75vw 0;
+  background: none; /* the faint vertical rules are removed */
 }
 
 .wrap { width: var(--wrap); margin-inline: auto; }
@@ -68,13 +67,14 @@
 }
 
 /* Small filled diamond used as a mark between rules and beside titles */
-.diamond { display: inline-block; width: 1vw; height: 1vw; background: currentColor; transform: rotate(45deg); flex: none; }
+/* diamonds removed site-wide; the class stays so existing markup is valid */
+.diamond { display: none !important; }
 @media (max-width: 1024px) { .diamond { width: 10px; height: 10px; } }
 
 /* Title row: title on the right, a 1px rule, an action on the left */
 .headRow { display: flex; align-items: center; gap: 2vw; margin-bottom: 1vw; }
 .headRow > h2, .headRow > p { margin: 0; font-size: var(--fs-h3); font-weight: 700; line-height: 1; white-space: nowrap; }
-.headRow .rule { flex: 1; height: 1px; background: var(--rule); }
+.headRow .rule { flex: 1; height: 1px; background: transparent; }
 @media (max-width: 767px) {
   .headRow { flex-wrap: wrap; gap: 14px; }
   .headRow .rule { display: none; }
@@ -84,7 +84,7 @@
 /* Section title with rules either side of a diamond (source: "WHAT WE DO" row) */
 .splitHead { display: flex; align-items: center; gap: 2vw; padding: 0 5vw; margin-bottom: 3vw; }
 .splitHead h2 { margin: 0; font-size: 3vw; font-weight: 300; line-height: 1; white-space: nowrap; }
-.splitHead .rule { flex: 1; height: 1px; background: var(--rule); }
+.splitHead .rule { flex: 1; height: 1px; background: transparent; }
 .splitHead p { margin: 0; width: 23vw; text-align: center; font-weight: 700; font-size: var(--fs-body); line-height: 1.2; }
 @media (max-width: 767px) {
   .splitHead { flex-direction: column; gap: 14px; padding: 0 16px; margin-bottom: 24px; }
@@ -104,7 +104,8 @@
 .rule2 { display: flex; flex-direction: column; align-items: center; gap: 0.4vw; text-align: center; }
 .kicker { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: 3vw; line-height: 1; }
 .ruleRow { display: flex; align-items: center; justify-content: center; gap: 1vw; width: 100%; }
-.ruleRow .line { flex: 0 1 var(--line-w, 4.6vw); height: 1px; background: var(--ink); opacity: 0.6; }
+/* the rules beside titles are removed; the title stands alone */
+.ruleRow .line { display: none !important; }
 .ruleRow h1, .ruleRow h2, .ruleRow p { margin: 0; font-size: 3.1vw; font-weight: 400; line-height: 1; }
 .ruleRow .diamond { width: 0.7vw; height: 0.7vw; }
 .long { --line-w: 33vw; }

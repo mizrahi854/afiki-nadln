@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { PHONE } from '@/lib/content';
 import { EMAIL, ADDRESS, RIGHTS, DISCLAIMER, hoodPages } from '@/lib/data';
 import { nav } from './nav';
+import { ContactLink } from './ContactLink';
 import s from './EmFooter.module.css';
 
 /**
@@ -25,7 +26,7 @@ export function EmFooter() {
         </div>
         <nav className={s.col} aria-label="ניווט באתר">
           <p>ניווט באתר</p>
-          <ul>{nav.map((n) => <li key={n.href}><Link href={n.href}>{n.label}</Link></li>)}</ul>
+          <ul>{nav.map((n) => <li key={n.href}>{n.href.includes('#talk-title') ? <ContactLink>{n.label}</ContactLink> : <Link href={n.href}>{n.label}</Link>}</li>)}</ul>
         </nav>
         <nav className={s.col} aria-label="שכונות בראש העין">
           <p>שכונות בראש העין</p>

@@ -31,7 +31,7 @@ export default function CyprusPage() {
           <div className={s.text}>
             <p className={em.kicker}>פאפוס, קפריסין · מאז 2015</p>
             <h2 id="horizon-title" className={s.title}>
-              <span className={s.lead}><i className={em.diamond} aria-hidden /><span aria-hidden />מהמיפוי</span>
+              <span className={s.lead}>מהמיפוי</span>
               <strong>ועד ניהול הנכס</strong>
             </h2>
             <div className={em.prose}>{cyprus.p.slice(1).map((p) => <p key={p.slice(0, 20)}>{p}</p>)}</div>

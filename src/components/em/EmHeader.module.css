@@ -48,62 +48,58 @@
 .menu[hidden] { display: none; }
 
 @media (max-width: 1280px) {
-  /* source on phones: logo on the left, burger on the right */
-  /* Emerald on phones: burger | phone pill | logo */
-  .bar { height: 60px; grid-template-columns: 1fr auto 1fr; padding-inline: 16px; }
+  /* phones and tablets: logo | (space) | call | menu */
+  .bar { height: 60px; grid-template-columns: auto 1fr auto auto; gap: 8px; padding-inline: 16px; }
   .bar[data-photo] { --lb: 1; --li: 0; }
-  .logo { order: 3; justify-self: end; }
-  .logo img { width: 112px; transform-origin: 0 50%; }
+  .logo img { width: 108px; transform-origin: 100% 50%; }
   .nav { display: none; }
-  .call { order: 2; justify-self: center; padding: 9px 14px; min-height: 40px; font-size: 15px; gap: 8px; }
-  .call svg { width: 16px; height: 16px; }
-  .callWord { display: none; }
+  .bar .call {
+    grid-column: 3; width: 44px; height: 44px; padding: 0; justify-content: center; gap: 0; min-height: 0;
+    clip-path: none; border-radius: 50%; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--rule);
+  }
+  .bar .call::after { content: none; }
+  .bar .call svg { width: 18px; height: 18px; }
+  .bar .call:hover, .bar .call:focus-visible { gap: 0; background: var(--brand); color: #fff; box-shadow: none; }
+  .callWord, .callNum { display: none; }
   .burger {
-    display: grid; gap: 6px; justify-self: start; width: 44px; height: 44px; place-content: center;
+    grid-column: 4; display: grid; gap: 7px; width: 44px; height: 44px; place-content: center;
     background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink);
   }
-  .burger span { display: block; width: 26px; height: 2px; background: currentColor; }
+  .burger span { display: block; width: 24px; height: 1.5px; background: currentColor; }
+  .burger span:last-child { width: 15px; justify-self: end; }
 
-  /* Menu: octagon panel inset 20px with an inner outline 8px in, close button in a diamond on the top edge */
   /* a backdrop-filter on the bar would make it the containing block of the fixed menu */
   .bar:has(.menu:not([hidden])) { -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .menu { position: fixed; inset: 0; z-index: 60; background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-  .panel {
-    --cut: 26px;
-    position: absolute; inset: 62px 20px 60px;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 48px 28px 32px;
-    background: var(--brand); color: #fff;
-    clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
-    animation: menuIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  .menu {
+    position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column;
+    background: #fff; color: var(--ink); padding: 0 20px max(20px, env(safe-area-inset-bottom));
+    animation: sheetIn 0.32s var(--ease-out);
   }
-  .panel::before {
-    content: ''; position: absolute; inset: 8px; pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
-  }
-  .close {
-    position: fixed; top: 40px; left: 50%; translate: -50% 0; z-index: 2;
-    width: 44px; height: 44px; display: grid; place-items: center; border: 0; cursor: pointer;
-    background: #fff; color: var(--brand); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  }
-  .close svg { width: 18px; height: 18px; }
-  .menuLogo { width: 150px; height: auto; margin-top: 8px; filter: brightness(0) invert(1); }
-  .menuNav { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: auto 0; width: 100%; min-height: 0; overflow-y: auto; padding: 12px 0; }
-  .menuNav a { font-size: 24px; line-height: 34px; color: #fff; padding-bottom: 2px; border-bottom: 1px solid transparent; }
-  .menuNav a[aria-current='page'] { border-bottom-color: #fff; }
-  .menuGroup { display: grid; justify-items: center; }
-  .menuRow { display: flex; align-items: center; gap: 4px; margin-inline-start: 40px; }
-  .menuRow button { width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: none; color: #fff; cursor: pointer; }
-  .menuRow svg { width: 20px; height: 20px; transition: rotate 0.3s var(--ease-out); }
+  .sheetTop { flex: none; display: flex; align-items: center; justify-content: space-between; height: 60px; border-bottom: 1px solid var(--rule); }
+  .menuLogo { width: 108px; height: auto; }
+  .close { width: 44px; height: 44px; margin-inline-end: -10px; display: grid; place-items: center; border: 0; background: none; color: var(--ink); cursor: pointer; }
+  .close svg { width: 24px; height: 24px; }
+  .menuNav { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 0 16px; }
+  .menuGroup { border-bottom: 1px solid var(--rule); animation: rowIn 0.38s var(--ease-out) both; animation-delay: calc(var(--i) * 35ms + 60ms); }
+  .menuRow { display: flex; align-items: center; justify-content: space-between; }
+  .menuRow > a { flex: 1; padding: 13px 0; font-size: 26px; font-weight: 300; line-height: 1.15; }
+  .menuRow > a[aria-current='page'] { font-weight: 600; }
+  .menuRow button { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; color: var(--ink); cursor: pointer; }
+  .menuRow svg { width: 20px; height: 20px; transition: rotate 0.25s var(--ease-out); }
   .menuGroup[data-open] .menuRow svg { rotate: 180deg; }
-  .menuGroup ul { list-style: none; margin: 2px 0 8px; padding: 6px 0; display: grid; justify-items: center; gap: 2px; border-top: 1px solid rgba(255, 255, 255, 0.3); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
-  .menuGroup ul a { font-size: 18px; line-height: 38px; opacity: 0.85; }
+  .menuGroup ul { list-style: none; margin: -2px 0 12px; padding: 0; display: grid; }
   .menuGroup ul[hidden] { display: none; }
-  .menuInfo { display: grid; gap: 12px; justify-items: center; font-size: 19px; margin-bottom: 22px; }
-  .menuInfo a, .menuInfo span { display: inline-flex; align-items: center; gap: 10px; }
-  .menuInfo svg { width: 18px; height: 18px; }
-  .menuCall { width: 100%; justify-content: center; background: #fff; color: var(--brand); font-size: 20px; }
+  .menuGroup ul a { display: block; padding: 9px 0; font-size: 17px; color: var(--ink-2); }
+  .menuFoot { flex: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 14px; }
+  .menuCall, .menuWa { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 50px; border-radius: 4px; font-size: 17px; font-weight: 600; }
+  .menuCall { background: var(--brand); color: #fff; }
+  .menuWa { box-shadow: inset 0 0 0 1px var(--ink); color: var(--ink); }
+  .menuCall svg, .menuWa svg { width: 18px; height: 18px; }
+  .menuInfo { grid-column: 1 / -1; display: grid; gap: 6px; margin: 8px 0 0; font-size: 15px; color: var(--ink-2); }
+  .menuInfo a, .menuInfo span { display: inline-flex; align-items: center; gap: 8px; }
+  .menuInfo svg { width: 15px; height: 15px; }
 }
+@keyframes sheetIn { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes rowIn { from { opacity: 0; transform: translateY(10px); } }
 @keyframes menuIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
-@media (prefers-reduced-motion: reduce) { .panel { animation: none; } .drop { transition: none; translate: none; } }
+@media (prefers-reduced-motion: reduce) { .menu, .menuGroup { animation: none; } .drop { transition: none; translate: none; } }

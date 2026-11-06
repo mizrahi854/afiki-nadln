@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowDown } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import s from './HoodScene.module.css';
 
@@ -37,6 +37,12 @@ export function HoodScene() {
         gsap.set(frames[0], { opacity: 1 });
         gsap.set(q('[data-s="mid"]'), { opacity: 0, y: 18 });
         gsap.set(q('[data-s="end"] > *'), { opacity: 0, y: 28 });
+
+        // entrance of the opening view as the section arrives: the photo settles, the lines rise out of their masks
+        gsap.timeline({ scrollTrigger: { trigger: root.current, start: 'top 60%', once: true } })
+          .from(q('[data-v] img')[0], { scale: 1.12, duration: 1.8, ease: 'expo.out' })
+          .from(q('[data-in]'), { yPercent: 110, duration: 1.1, stagger: 0.09, ease: 'expo.out' }, 0.15)
+          .from(q('[data-s="intro-bar"]'), { opacity: 0, y: 12, duration: 0.6, ease: 'power2.out' }, 0.6);
 
         const tl = gsap.timeline({
           defaults: { ease: 'none' },
@@ -91,17 +97,13 @@ export function HoodScene() {
         <div className={s.night} data-s="night" />
         <div className={s.vignette} />
 
-        {/* opening view: serif kicker, the name between the diamond rules of the inner pages, one line under it */}
+        {/* opening view: an editorial block on the lower right of the first photo; lines rise out of masks */}
         <div className={s.intro} data-s="intro">
-          <p className={s.kick}>מבט מהאוויר</p>
-          <div className={s.nameRow}>
-            <i aria-hidden /><span aria-hidden />
-            <h2 id="scene-title" className={s.name}>פסגות אפק</h2>
-            <span aria-hidden /><i aria-hidden />
-          </div>
+          <p className={s.kick}><span className={s.mask}><span data-in>מבט מהאוויר</span></span></p>
+          <h2 id="scene-title" className={s.name}><span className={s.mask}><span data-in>פסגות אפק</span></span></h2>
+          <p className={s.lede}><span className={s.mask}><span data-in>דירות חדשות בסטנדרט גבוה, מוקד לזוגות צעירים ומשפרי דיור.</span></span></p>
         </div>
-        {/* the one-line glass bar of the inner pages' cards: the line on the right, the place on the left */}
-        <p className={s.glass} data-s="intro-bar"><span>דירות חדשות בסטנדרט גבוה, מוקד לזוגות צעירים ומשפרי דיור.</span><span>ראש העין</span></p>
+        <p className={s.cue} data-s="intro-bar"><span>ראש העין</span><span className={s.cueGo}>גללו לטיסה מעל השכונה<ArrowDown size={15} strokeWidth={1.6} aria-hidden /></span></p>
 
         <p className={s.mid} data-s="mid">
           מהמבט הראשון מהאוויר ועד הכניסה לבניין:<br />שכונה על גבעה, עם טיילת, פארקים ונוף להרים.

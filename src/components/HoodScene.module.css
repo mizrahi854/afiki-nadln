@@ -17,21 +17,26 @@
 
 .eyebrow { margin: 0; font-size: 11px; letter-spacing: 0.16em; color: var(--mute); }
 
-/* opening view: the name over the sky of the first photo, the glass bar along its lower edge */
-.intro { position: absolute; top: max(78px, 9.5vh); right: 5vw; left: 5vw; display: grid; justify-items: center; gap: 0.6vw; text-align: center; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3); }
-.kick { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: clamp(24px, 2.5vw, 44px); line-height: 1; color: #fff; }
-.nameRow { display: flex; align-items: center; justify-content: center; gap: 1.6vw; width: 100%; }
-.nameRow > span { flex: 0 1 9vw; height: 1px; background: rgba(255, 255, 255, 0.8); }
-.nameRow > i { width: 0.8vw; height: 0.8vw; min-width: 8px; min-height: 8px; background: #fff; transform: rotate(45deg); flex: none; }
-.name { margin: 0; font-weight: 700; font-size: clamp(56px, 7.6vw, 140px); line-height: 0.95; color: #fff; white-space: nowrap; }
-.glass {
-  position: absolute; right: 5vw; left: 5vw; bottom: 76px; margin: 0; min-height: max(54px, 3.6vw); padding: 0 1.6vw;
-  display: flex; align-items: center; justify-content: space-between; gap: 2vw;
-  background: var(--glass); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); color: var(--ink);
-  font-size: clamp(16px, 1.3vw, 22px);
+/* opening view: kicker, name and one line on the lower right, a small place / scroll cue on the lower left */
+.intro {
+  position: absolute; z-index: 1; right: 5vw; bottom: max(120px, 15vh); max-width: min(62vw, 980px);
+  display: grid; justify-items: start; gap: 0.9vw; text-align: right; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
 }
-.glass span:first-child { font-weight: 700; }
-.glass span:last-child { font-weight: 300; white-space: nowrap; }
+.mask { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.mask > span { display: block; }
+.kick { margin: 0; font-family: var(--serif); font-stretch: normal; font-weight: 300; font-size: clamp(20px, 1.9vw, 34px); line-height: 1.1; color: rgba(255, 255, 255, 0.92); }
+.name { margin: 0; font-weight: 800; font-size: clamp(64px, 9.6vw, 176px); line-height: 0.9; letter-spacing: -0.025em; color: #fff; white-space: nowrap; }
+.lede { margin: 0.4vw 0 0; max-width: 30ch; font-size: clamp(17px, 1.35vw, 23px); font-weight: 300; line-height: 1.45; color: rgba(255, 255, 255, 0.9); }
+.cue {
+  position: absolute; left: 4.5vw; bottom: 72px; margin: 0; display: grid; justify-items: end; gap: 6px; text-align: left;
+  font-size: 13px; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.78);
+}
+.cue span:first-child { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
+.cueGo { display: inline-flex; align-items: center; gap: 8px; }
+.cueGo svg { animation: bob 2.2s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+/* the first photo reads brighter at rest: the bottom gets its own shade under the text */
+.intro::before { content: ''; position: absolute; z-index: -1; inset: -40vh -5vw -20vh -60vw; background: radial-gradient(70% 60% at 85% 75%, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 70%); pointer-events: none; }
 
 /* one short centered line through the flight */
 .mid {
@@ -62,11 +67,10 @@
 
 @media (max-width: 768px) {
   .scene { height: 480vh; }
-  .intro { top: 96px; gap: 12px; }
-  .nameRow { gap: 10px; }
-  .nameRow > span { flex-basis: 28px; }
-  .name { font-size: 15vw; }
-  .glass { right: 16px; left: 16px; bottom: 64px; padding: 10px 14px; font-size: 15px; }
+  .intro { right: 16px; left: 16px; bottom: 132px; max-width: none; gap: 8px; }
+  .name { font-size: 17vw; }
+  .lede { font-size: 16px; }
+  .cue { left: 16px; right: 16px; bottom: 62px; justify-items: start; text-align: right; }
   .foot { grid-template-columns: auto 1fr; }
   .foot > span:last-child { display: none; }
   .primary, .ghost { flex: 1 1 auto; justify-content: center; }
@@ -75,6 +79,7 @@
 @media (prefers-reduced-motion: reduce) {
   .scene { height: auto; }
   .stage { position: relative; }
-  .view:not(:last-child), .intro, .glass, .mid, .foot { display: none; }
+  .view:not(:last-child), .intro, .cue, .mid, .foot { display: none; }
+  .cueGo svg { animation: none; }
   .night { opacity: 0.62; }
 }

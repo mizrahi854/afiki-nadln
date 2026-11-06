@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Home, Trees, MapPin, Building2 } from 'lucide-react';
 import { EmHeader } from '@/components/em/EmHeader';
 import { EmFooter } from '@/components/em/EmFooter';
+import { MortgageFab } from '@/components/home/MortgageFab';
 import { PhotoHero } from '@/components/em/PhotoHero';
 import { EmCard } from '@/components/em/EmCard';
 import { HScroll, type Step } from '@/components/em/HScroll';
@@ -69,7 +70,7 @@ export default async function HoodPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
           ) : (
-            <p className={s.none}>אין כרגע נכס למכירה בשכונה הזאת. <Link href="/contact">השאירו פרטים</Link> ויוסי יעדכן כשייכנס נכס.</p>
+            <p className={s.none}>אין כרגע נכס למכירה בשכונה הזאת. <Link href="/#talk-title">השאירו פרטים</Link> ויוסי יעדכן כשייכנס נכס.</p>
           )}
           <div className={s.center}>
             <Link className={em.poly} href={homes.length ? `/properties?area=${encodeURIComponent(homes[0].area ?? '')}#all` : '/properties'}>
@@ -125,6 +126,7 @@ export default async function HoodPage({ params }: { params: Promise<{ slug: str
         <ContactFrame title={`מחפשים בית ב${h.name}?`} subject={`נכס ב${h.name}`} />
       </main>
       <EmFooter />
+      <MortgageFab presets={(homes.some((l) => l.price) ? homes : undefined)?.filter((l) => l.price).map((l) => ({ id: l.id, label: l.title, price: l.price! }))} />
     </div>
   );
 }

@@ -1,45 +1,65 @@
-/* Adaptation: Emerald has no calculator. The LET'S TALK frame holds the fields; results use the 156×120 boxes. */
-.calc { padding: 3.2vw 3vw 2.4vw; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.4vw; justify-items: center; }
-.fields { display: grid; grid-template-columns: repeat(4, 15.2vw); gap: 1.7vw; }
-.fields label { display: grid; gap: 0.4vw; font-size: 1.2vw; color: var(--ink-2); }
-.fields input { height: 3.6vw; border: 0; border-bottom: 1px solid var(--ink); background: transparent; color: var(--ink); font: inherit; font-stretch: 62.5%; font-size: 1.8vw; text-align: right; padding: 0 0.2vw; border-radius: 0; }
-.out li { width: 16vw; }
-.out b { font-size: 2.2vw; line-height: 1.6; }
-.warn { margin: 0; font-size: 1.2vw; font-weight: 700; text-align: center; }
-.fine { margin: 0; font-size: 1.1vw; color: var(--ink-2); text-align: center; max-width: 60vw; }
-.preset { display: grid; gap: 0.4vw; width: min(100%, 40vw); font-size: 1.2vw; color: var(--ink-2); }
-.preset select { width: 100%; min-width: 0; text-overflow: ellipsis; height: 3.2vw; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: inherit; font-stretch: 62.5%; font-size: 1.4vw; padding: 0 1vw; border-radius: 0; cursor: pointer; }
-
-/* compact: the floating panel (≈ 30vw wide) */
-.calc[data-compact] { padding: 2vw 1.8vw 1.6vw; gap: 1.4vw; }
-.calc[data-compact] .fields { grid-template-columns: 1fr 1fr; gap: 1.2vw; width: 100%; }
-.calc[data-compact] .fields label { font-size: max(13px, 0.95vw); }
-.calc[data-compact] .fields input { height: 2.8vw; font-size: max(17px, 1.4vw); }
-.calc[data-compact] .out { flex-wrap: wrap; justify-content: center; gap: 0.7vw; }
-.calc[data-compact] .out li { width: calc(50% - 0.35vw); height: 6.4vw; }
-.calc[data-compact] .out b { font-size: max(18px, 1.55vw); }
-.calc[data-compact] .out span { font-size: max(13px, 1vw); }
-.calc[data-compact] .warn, .calc[data-compact] .fine { font-size: max(12px, 0.9vw); max-width: none; }
-
-@media (max-width: 1024px) {
-  .preset { width: 100%; font-size: 15px; gap: 4px; }
-  .preset select { height: 48px; font-size: 18px; padding: 0 12px; }
-  .calc[data-compact] { padding: 28px 16px 20px; gap: 18px; }
-  .calc[data-compact] .fields { gap: 14px; }
-  .calc[data-compact] .fields label { font-size: 15px; }
-  .calc[data-compact] .fields input { height: 44px; font-size: 19px; }
-  .calc[data-compact] .out { gap: 8px; }
-  .calc[data-compact] .out li { width: calc(50% - 4px); height: 84px; }
-  .calc[data-compact] .out b { font-size: 20px; }
-  .calc[data-compact] .out span { font-size: 14px; }
-  .calc[data-compact] .warn, .calc[data-compact] .fine { font-size: 13px; }
-  .calc { padding: 40px 18px 26px; gap: 22px; --c: polygon(0% 4%, 9% 0%, 91% 0%, 100% 4%, 100% 96%, 91% 100%, 9% 100%, 0% 96%); }
-  .fields { grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
-  .fields label { font-size: 15px; gap: 4px; }
-  .fields input { height: 48px; font-size: 20px; }
-  .out { flex-wrap: wrap; justify-content: center; }
-  .out li { width: calc(50% - 5px); height: 96px; }
-  .out b { font-size: 21px; }
-  .warn { font-size: 15px; }
-  .fine { font-size: 14px; max-width: none; }
+/* Mortgage calculator, set in Frank Ruhl Libre. Sliders + editable numbers on one side, the donut and the
+   breakdown on the other; stacks when its own box is narrow (side panel, phones). */
+.calc {
+  container-type: inline-size;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
+  padding: clamp(20px, 2.4vw, 36px); background: #fff; border: 1px solid var(--rule); border-radius: 6px;
+  font-family: var(--serif); font-stretch: normal; color: var(--ink);
 }
+.calc :is(input, select, b, span, label, p) { font-family: var(--serif); font-stretch: normal; }
+.calc[data-compact] { padding: 0; border: 0; }
+
+.inputs { display: grid; gap: 20px; }
+.preset { display: grid; gap: 6px; font-size: 15px; color: var(--ink-2); }
+.preset select {
+  width: 100%; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 6px;
+  background: #f6f7f7; color: var(--ink); font-size: 16px; text-overflow: ellipsis; cursor: pointer;
+}
+.field { display: grid; gap: 10px; }
+.fieldTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fieldTop label { font-size: 16px; color: var(--ink-2); }
+.num {
+  width: 9.5em; height: 40px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 6px;
+  background: #f6f7f7; color: var(--ink); font-size: 18px; text-align: left; transition: border-color 0.2s;
+}
+.num:focus { outline: none; border-color: var(--ink); background: #fff; }
+
+/* slider: thin track, filled up to the value from the right (RTL), round thumb */
+.range { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; margin: 0; background: transparent; cursor: pointer; direction: rtl; }
+.range::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to left, var(--ink) var(--p), rgba(23, 48, 62, 0.12) var(--p)); }
+.range::-moz-range-track { height: 4px; border-radius: 2px; background: rgba(23, 48, 62, 0.12); }
+.range::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--ink); }
+.range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; margin-top: -9px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); transition: transform 0.15s; }
+.range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); }
+.range:active::-webkit-slider-thumb { transform: scale(1.12); }
+.range:focus-visible { outline: none; }
+.range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(199, 211, 27, 0.6); }
+
+.result { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: center; justify-items: center; padding: 22px; background: #f6f7f7; border-radius: 6px; }
+.donut { position: relative; width: min(100%, 230px); aspect-ratio: 1; }
+.donut svg { display: block; width: 100%; height: 100%; }
+.seg { transition: stroke-dasharray 0.45s var(--ease-out), stroke-dashoffset 0.45s var(--ease-out); }
+.center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 2px; }
+.center b { font-size: 28px; font-weight: 500; line-height: 1; }
+.center span { font-size: 13px; color: var(--ink-2); }
+.legend { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; }
+.legend li { display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 10px; padding: 9px 0; font-size: 15px; border-bottom: 1px solid var(--rule); }
+.legend li:last-child { border-bottom: 0; }
+.legend i { width: 12px; height: 12px; border-radius: 50%; }
+.legend b { font-size: 17px; font-weight: 500; }
+.legend .sum { grid-template-columns: 1fr auto; color: var(--ink-2); }
+
+.warn { margin: 0; padding: 12px 14px; border-radius: 6px; background: rgba(199, 211, 27, 0.18); font-size: 14px; font-weight: 500; line-height: 1.45; }
+.fine { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-3); }
+
+/* wide box: inputs and result side by side */
+@container (min-width: 720px) {
+  .calc { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 40px; }
+  .warn, .fine { grid-column: 1 / -1; }
+  .result { align-self: start; }
+}
+/* medium box (side panel): donut beside the legend */
+@container (min-width: 440px) and (max-width: 719px) {
+  .result { grid-template-columns: 190px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .seg, .range::-webkit-slider-thumb { transition: none; } }
