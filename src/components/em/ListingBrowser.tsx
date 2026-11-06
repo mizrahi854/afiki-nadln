@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { gsap } from '@/lib/gsap';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { type Listing, kindLabels, kindOf, price, type Kind } from '@/lib/core';
@@ -17,6 +18,16 @@ const areaOf = (l: Listing) => l.area ?? l.city;
  */
 export function ListingBrowser({ items, noun = 'נכסים למכירה' }: { items: Listing[]; noun?: string }) {
   const params = useSearchParams();
+  const grid = useRef<HTMLDivElement>(null);
+  const first = useRef(true);
+  // The site-wide entrance hides cards below the fold until they scroll in. A filter moves those cards up into
+  // view without any scrolling, so show whatever is still waiting, in the same rise-and-unblur language.
+  const key = params.toString();
+  useEffect(() => {
+    if (first.current) { first.current = false; return; }
+    const waiting = grid.current?.querySelectorAll<HTMLElement>('[style]');
+    if (waiting?.length) gsap.to(waiting, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'power3.out', stagger: 0.04, overwrite: true, clearProps: 'all' });
+  }, [key]);
   const router = useRouter();
   const path = usePathname();
   const [q, setQ] = useState(params.get('q') ?? '');
@@ -82,7 +93,7 @@ export function ListingBrowser({ items, noun = 'נכסים למכירה' }: { it
       </div>
 
       {shown.length ? (
-        <div className={s.grid}>
+        <div ref={grid} className={s.grid}>
           {shown.map((l) => (
             <EmCard key={l.id} href={`/properties/${l.id}`} img={l.images[0]} name={l.title} place={areaOf(l)} desc={facts(l)} />
           ))}
