@@ -23,7 +23,7 @@ export function SoldStrip() {
     </li>
   );
   return (
-    <section className={s.section} aria-labelledby="sold-title" data-no-motion>
+    <section id="sold" className={s.section} aria-labelledby="sold-title" data-no-motion>
       <div className={`${em.wrap} ${em.headRow}`}>
         <h2 id="sold-title">נכסים שמכרנו.</h2>
         <span className={em.rule} />

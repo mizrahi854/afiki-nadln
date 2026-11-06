@@ -21,7 +21,7 @@ export function MarqueeHero({ lead, strong, children, left, right }: {
     </div>
   );
   return (
-    <section className={`${s.hero} ${em.lines}`}>
+    <section id="top" className={`${s.hero} ${em.lines}`}>
       {col(left, 'up', s.left)}
       {col(right, 'down', s.right)}
       <div className={s.strip} aria-hidden>

@@ -33,7 +33,7 @@ export function AskYossi() {
   const close = () => { dialog.current?.close(); };
 
   return (
-    <section ref={root} className={s.band} aria-labelledby="ask-title">
+    <section id="ask-yossi" ref={root} className={s.band} aria-labelledby="ask-title">
       <div className={s.txt} data-a="txt">
         <h2 id="ask-title" className={s.title}>כל מה שחשבתם<br />שרציתם לשאול</h2>
         <p className={s.text}>אספנו עבורכם כמעט את כל השאלות שעולות בדרך כלל מקונים ומוכרים, וענינו עליהן בהרחבה. יש לכם שאלות נוספות? מעוניינים למכור או לרכוש נכס? דברו איתנו.</p>

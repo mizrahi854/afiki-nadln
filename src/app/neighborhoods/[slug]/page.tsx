@@ -51,7 +51,7 @@ export default async function HoodPage({ params }: { params: Promise<{ slug: str
         </PhotoHero>
 
         {first && (
-          <section className={`${em.wrap} ${s.about}`}>
+          <section id="about" className={`${em.wrap} ${s.about}`}>
             <Rule kicker={h.name} title={first.h} split className={s.aboutHead} />
             <div className={em.prose}>
               {(steps.length >= 3 ? first.p : first.p.slice(0, 1)).map((p, i) => <p key={i}>{p}</p>)}
@@ -80,7 +80,7 @@ export default async function HoodPage({ params }: { params: Promise<{ slug: str
         </section>
 
         {h.prices && (
-          <section className={`${em.wrap} ${s.prices}`} aria-labelledby="prices-title">
+          <section id="prices" className={`${em.wrap} ${s.prices}`} aria-labelledby="prices-title">
             <div className={em.headRow}>
               <h2 id="prices-title">מחירים ב{h.name}</h2>
               <span className={em.rule} /><i className={em.diamond} /><span className={em.rule} />
@@ -112,7 +112,7 @@ export default async function HoodPage({ params }: { params: Promise<{ slug: str
         )}
 
         {quote && pics[2] && (
-          <section className={b.story}>
+          <section id="story" className={b.story}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={pics[2]} alt="" loading="lazy" />
             <div className={`${em.frame} ${b.storyPanel}`}>

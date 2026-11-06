@@ -26,7 +26,7 @@ export function SellBand() {
   }, { scope: root });
 
   return (
-    <section ref={root} className={s.band} aria-labelledby="sell-band-title">
+    <section id="sell" ref={root} className={s.band} aria-labelledby="sell-band-title">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img data-a="bg" className={s.bg} src="/media/misc/living.webp" alt="" loading="lazy" />
       <div className={s.box} data-a="box">

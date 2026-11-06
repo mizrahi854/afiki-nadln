@@ -48,7 +48,7 @@ export default function Page() {
         <Hero areas={areas} />
 
         {/* 2 */}
-        <section className={`${em.wrap} ${h.listings}`} aria-labelledby="featured-title">
+        <section id="featured" className={`${em.wrap} ${h.listings}`} aria-labelledby="featured-title">
           <div className={em.headRow}>
             <h2 id="featured-title">נכסים שכדאי להכיר.</h2>
             <span className={em.rule} />
@@ -66,7 +66,7 @@ export default function Page() {
         <SellBand />
 
         {/* 4 — the counters sit beside the about text */}
-        <section className={b.split} aria-labelledby="about-title">
+        <section id="about" className={b.split} aria-labelledby="about-title">
           <div className={h.about}>
             <p className={em.kicker}>מי אנחנו</p>
             <h2 id="about-title" className={h.aboutTitle}>
@@ -94,7 +94,7 @@ export default function Page() {
         <HoodScene />
 
         {/* 7 — slides up over the last screen of the pinned scene */}
-        <section className={`${h.services} ${h.overStage}`} aria-labelledby="services-title">
+        <section id="services" className={`${h.services} ${h.overStage}`} aria-labelledby="services-title">
           <div className={em.splitHead}>
             <h2 id="services-title">איך אפשר לעזור לכם?</h2>
             <span className={em.rule} /><i className={em.diamond} /><span className={em.rule} />
@@ -107,7 +107,7 @@ export default function Page() {
         <Testimonials />
 
         {/* 10 */}
-        <section className={`${em.wrap} ${h.blog}`} aria-labelledby="blog-title">
+        <section id="guides" className={`${em.wrap} ${h.blog}`} aria-labelledby="blog-title">
           <div className={em.headRow}>
             <h2 id="blog-title">מדריכים נבחרים.</h2>
             <span className={em.rule} />

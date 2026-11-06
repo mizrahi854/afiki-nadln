@@ -52,7 +52,7 @@ export default function PropertiesPage() {
           </Suspense>
         </section>
 
-        <section className={s.kinds} aria-labelledby="kinds-title">
+        <section id="by-kind" className={s.kinds} aria-labelledby="kinds-title">
           <div className={em.splitHead}>
             <h2 id="kinds-title">לפי סוג נכס</h2>
             <span className={em.rule} />

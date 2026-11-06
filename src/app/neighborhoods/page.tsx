@@ -31,7 +31,7 @@ export default function NeighborhoodsPage() {
           <p>לכל שכונה <b>עמוד משלה עם הנכסים שלה</b> שמשווקים עכשיו.</p>
         </MarqueeHero>
 
-        <section className={`${em.wrap} ${s.list}`}>
+        <section id="all" className={`${em.wrap} ${s.list}`}>
           <div className={`${em.headRow} ${s.head}`}>
             <h2>{hoodPages.length} שכונות, עמוד לכל אחת.</h2>
             <span className={em.rule} />
@@ -48,7 +48,7 @@ export default function NeighborhoodsPage() {
           </div>
         </section>
 
-        <section className={s.kinds} aria-labelledby="look-title">
+        <section id="closer" className={s.kinds} aria-labelledby="look-title">
           <div className={em.splitHead}>
             <h2 id="look-title">מבט מקרוב</h2>
             <span className={em.rule} /><i className={em.diamond} /><span className={em.rule} />

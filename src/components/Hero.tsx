@@ -48,7 +48,7 @@ export function Hero({ areas }: { areas: string[] }) {
   const sale = tab === 'sale';
 
   return (
-    <section className={s.viewport} aria-labelledby="hero-title" ref={root}>
+    <section id="search" className={s.viewport} aria-labelledby="hero-title" ref={root}>
       <h1 id="hero-title" className="sr-only">אפיקי נדל״ן — כאן מתחיל העתיד. הכתובת שלכם לבית בראש העין.</h1>
 
       <div className={s.canvas}>

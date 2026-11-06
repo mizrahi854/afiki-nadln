@@ -16,7 +16,7 @@ export type QA = { q: string; a: string; href?: string; from?: string };
 export function Faq({ items, title = 'שאלות נפוצות', kicker = 'יש שאלה?' }: { items: QA[]; title?: string; kicker?: string }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className={`${em.wrap} ${s.faq}`} aria-label={title}>
+    <section id="questions" className={`${em.wrap} ${s.faq}`} aria-label={title}>
       <div className={s.faqSide}>
         <Rule kicker={kicker} title={title} />
         <p><b>יש לכם שאלה שלא מופיעה כאן?</b><br />דברו איתנו ונשמח לעזור:</p>

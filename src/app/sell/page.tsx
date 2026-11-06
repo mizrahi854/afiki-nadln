@@ -30,7 +30,7 @@ export default function SellPage() {
         </PhotoHero>
         <HScroll kicker="השיטה שלנו" title="איך מוכרים איתנו" img="/media/listings/9237-1.jpg" steps={steps} />
         {closing && (
-          <section className={b.story}>
+          <section id="reviews" className={b.story}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/media/psagot/fly-3.jpg" alt="" loading="lazy" />
             <div className={`${em.frame} ${b.storyPanel}`}>

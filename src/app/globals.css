@@ -20,6 +20,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
+/* links to a section (#featured, #drone-flight…) land below the fixed header, which is 4vw tall once scrolled (50px under 1280px) */
+html { scroll-padding-top: max(50px, 4vw); }
 body { background: var(--night); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 button, select { font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }

@@ -23,7 +23,7 @@ export default function ArticlesPage() {
           <p>מהבלוג של אפיקי נדל״ן: <b>שוק הנדל״ן, משכנתאות, קנייה ומכירה</b>, ומה שקורה בראש העין.</p>
           <p>{articles.length} המאמרים האחרונים, בנוסח המלא שלהם.</p>
         </MarqueeHero>
-        <section className={`${em.wrap} ${s.list}`}>
+        <section id="all" className={`${em.wrap} ${s.list}`}>
           <div className={`${em.headRow} ${s.head}`}>
             <h2>מה חדש בשוק.</h2>
             <span className={em.rule} />

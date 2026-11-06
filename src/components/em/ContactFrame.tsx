@@ -19,7 +19,7 @@ export function ContactFrame({ title = 'בואו נמצא לכם את הבית �
   const [sent, setSent] = useState(false);
   const opts = subject && !subjects.includes(subject) ? [subject, ...subjects] : subjects;
   return (
-    <section className={`${em.wrap} ${s.talkWrap}`} aria-labelledby="talk-title">
+    <section id="contact" className={`${em.wrap} ${s.talkWrap}`} aria-labelledby="talk-title">
       <div className={`${em.frame} ${em.frameWide} ${s.talk}`}>
         <Rule kicker="דברו איתנו" title={title} id="talk-title" />
         <p className={s.talkSub}>השאירו פרטים ויוסי חיים מאפיקי נדל״ן יחזור אליכם בהקדם:</p>

@@ -8,7 +8,7 @@ import s from './PhotoHero.module.css';
  */
 export function PhotoHero({ img, kicker, title, children, action }: { img: string; kicker: string; title: string; children?: ReactNode; action?: ReactNode }) {
   return (
-    <section className={s.hero}>
+    <section id="top" className={s.hero}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className={s.bg} src={img} alt="" />
       <div className={s.inner}>

@@ -22,14 +22,32 @@ const free = (el: Element) => !el.closest(OWN);
  * Each plays once at "top 88%" and clears its inline styles, so hover states are untouched afterwards.
  * Reduced motion: nothing is touched.
  */
+/** Scroll to the section named in the address (#id), instantly, unless the visitor has already moved the page. */
+let touched = false;
+if (typeof window !== 'undefined') {
+  const mark = () => { touched = true; };
+  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((e) => addEventListener(e, mark, { passive: true }));
+}
+function toHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const el = id && document.getElementById(id);
+  if (!el || touched) return;
+  el.scrollIntoView({ block: 'start', behavior: 'instant' });
+  ScrollTrigger.update();
+}
+
 export function SiteMotion() {
   const path = usePathname();
   useEffect(() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    touched = false;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { const r = setTimeout(() => { ScrollTrigger.refresh(); toHash(); }, 120); return () => clearTimeout(r); }
     let ctx: gsap.Context | undefined;
     const t = setTimeout(() => {
       const main = document.querySelector('main');
       if (!main) return;
+      // pinned scenes add their scroll length only now, so a link to a section further down lands short: measure, then go there
+      ScrollTrigger.refresh();
+      toHash();
       ctx = gsap.context(() => {
         const pick = (sel: string) => [...main.querySelectorAll<HTMLElement>(sel)].filter(free).filter((e) => e.getBoundingClientRect().top > innerHeight * 0.9);
         const play = (els: HTMLElement[], from: gsap.TweenVars, to: gsap.TweenVars, stagger: number) => {
@@ -60,8 +78,12 @@ export function SiteMotion() {
           { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, 0.09);
       }, main);
       ScrollTrigger.refresh();
+      toHash();
     }, 120);
-    return () => { clearTimeout(t); ctx?.revert(); };
+    // late images and fonts can move things again; follow the link once more unless the visitor has started scrolling
+    const onLoad = () => { ScrollTrigger.refresh(); toHash(); };
+    if (document.readyState !== 'complete') addEventListener('load', onLoad, { once: true });
+    return () => { clearTimeout(t); removeEventListener('load', onLoad); ctx?.revert(); };
   }, [path]);
   return null;
 }

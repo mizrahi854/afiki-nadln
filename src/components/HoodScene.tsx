@@ -84,7 +84,7 @@ export function HoodScene() {
   );
 
   return (
-    <section className={s.scene} ref={root} aria-labelledby="scene-title">
+    <section id="drone-flight" className={s.scene} ref={root} aria-labelledby="scene-title">
       <div className={s.stage}>
         <div className={s.views}>
           {views.map((v, i) => (

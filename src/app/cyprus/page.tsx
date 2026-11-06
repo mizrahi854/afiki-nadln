@@ -27,7 +27,7 @@ export default function CyprusPage() {
           <p>{cyprus.p[0]}</p>
         </PhotoHero>
 
-        <section className={`${b.split} ${s.story}`} aria-labelledby="horizon-title">
+        <section id="story" className={`${b.split} ${s.story}`} aria-labelledby="horizon-title">
           <div className={s.text}>
             <p className={em.kicker}>פאפוס, קפריסין · מאז 2015</p>
             <h2 id="horizon-title" className={s.title}>
@@ -46,7 +46,7 @@ export default function CyprusPage() {
           </div>
         </section>
 
-        <section className={`${em.wrap} ${s.services}`} aria-labelledby="cy-services-title">
+        <section id="services" className={`${em.wrap} ${s.services}`} aria-labelledby="cy-services-title">
           <Rule kicker="מה החברה עושה" title="ליווי מלא בקפריסין" id="cy-services-title" />
           <ol>
             {cyprus.services.map((t, i) => (
@@ -55,7 +55,7 @@ export default function CyprusPage() {
           </ol>
         </section>
 
-        <section className={s.gallery} aria-labelledby="cy-gallery-title">
+        <section id="examples" className={s.gallery} aria-labelledby="cy-gallery-title">
           <div className={em.wrap}><Rule kicker="פאפוס, קפריסין" title="נכסים לדוגמא" id="cy-gallery-title" /></div>
           <EmCarousel images={cyprus.gallery.slice(1)} label="נכסים לדוגמא בקפריסין" />
         </section>

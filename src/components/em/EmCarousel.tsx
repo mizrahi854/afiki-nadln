@@ -44,7 +44,7 @@ export function EmCarousel({ images, label }: { images: string[]; label: string 
   const shown = ((i - per) % n + n) % n;
 
   return (
-    <section className={s.car} aria-roledescription="carousel" aria-label={label}
+    <section id="gallery" className={s.car} aria-roledescription="carousel" aria-label={label}
       onMouseEnter={() => (paused.current = true)} onMouseLeave={() => (paused.current = false)}>
       <div className={s.carView}>
         <div className={s.carTrack} onTransitionEnd={onEnd}

@@ -39,7 +39,7 @@ export function Testimonials() {
 
   const r = testimonials[i];
   return (
-    <section className={`${s.section} ${em.lines}`} ref={root} aria-labelledby="voices-title" aria-roledescription="carousel"
+    <section id="reviews" className={`${s.section} ${em.lines}`} ref={root} aria-labelledby="voices-title" aria-roledescription="carousel"
       onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
       <Rule kicker="מה לקוחות מספרים?" title="המלצות" id="voices-title" />
 

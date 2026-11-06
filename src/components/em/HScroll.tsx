@@ -32,7 +32,7 @@ export function HScroll({ kicker, title, img, steps }: { kicker: string; title: 
   }, { scope: root });
 
   return (
-    <section ref={root} className={s.proc} aria-label={title}>
+    <section id="steps" ref={root} className={s.proc} aria-label={title}>
       <div className={s.procPic} aria-hidden>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className={s.procImg} src={img} alt="" />

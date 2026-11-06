@@ -23,7 +23,7 @@ export function CyprusTeaser() {
   }, { scope: root });
 
   return (
-    <section ref={root} className={`${em.wrap} ${s.section}`} aria-labelledby="cyprus-home-title">
+    <section id="cyprus" ref={root} className={`${em.wrap} ${s.section}`} aria-labelledby="cyprus-home-title">
       <div className={s.text}>
         <p className={em.kicker}>{cyprus.kicker}</p>
         <h2 id="cyprus-home-title" className={s.title}>

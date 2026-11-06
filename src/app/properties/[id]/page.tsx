@@ -42,7 +42,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
       <main>
         <EmCarousel images={gallery} label={l.title} />
 
-        <section className={`${em.wrap} ${b.intro}`}>
+        <section id="details" className={`${em.wrap} ${b.intro}`}>
           <div>
             <div className={`${em.frame} ${b.titleBox}`}>
               <div className={em.ruleRow}><i className={em.diamond} /><span className={em.line} /><h1>{l.title}</h1><span className={em.line} /><i className={em.diamond} /></div>
@@ -65,7 +65,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
         </section>
 
         {(nums.length > 0 || l.features.length > 0) && (
-          <section className={b.split}>
+          <section id="numbers" className={b.split}>
             <div className={b.numbers}>
               <Rule title={hood && l.area ? l.area : 'פרטי הנכס'} />
               {nums.length > 0 && <>
@@ -97,7 +97,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
 
         <ContactFrame title={done ? 'מחפשים נכס דומה?' : 'מתעניינים בנכס הזה?'} subject={l.title} />
 
-        <section className={`${em.wrap} ${s.more}`} aria-labelledby="more-title">
+        <section id="more" className={`${em.wrap} ${s.more}`} aria-labelledby="more-title">
           <Rule title="נכסים נוספים" id="more-title" />
           <div className={s.grid}>
             {more.map((x) => (

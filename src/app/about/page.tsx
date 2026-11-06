@@ -33,7 +33,7 @@ export default function AboutPage() {
     <div className={em.page}>
       <EmHeader />
       <main>
-        <section className={`${s.hero} ${em.lines}`}>
+        <section id="top" className={`${s.hero} ${em.lines}`}>
           <Collage images={['/media/team/yossi.jpg', '/media/psagot/fly-2.jpg', '/media/listings/9237-0.jpg', '/media/team/moran.jpg', '/media/hoods/givat-tal.webp']} />
           <div className={s.heroText}>
             <h1 className={s.title}>
@@ -44,7 +44,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className={`${em.wrap} ${s.vision}`}>
+        <section id="vision" className={`${em.wrap} ${s.vision}`}>
           <Rule kicker="אני מאמין" title={unique.h} />
           <div className={em.prose}>
             {restIntro && <p>{restIntro}</p>}
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className={b.values} style={{ ['--band' as string]: 'url(/media/psagot/fly-4.jpg)' }} aria-labelledby="values-title">
+        <section id="method" className={b.values} style={{ ['--band' as string]: 'url(/media/psagot/fly-4.jpg)' }} aria-labelledby="values-title">
           <div className={em.wrap}>
             <Rule kicker="השיטה שלנו" title="איך אנחנו עובדים" id="values-title" />
             <ul className={b.cards5}>

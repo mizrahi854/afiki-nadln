@@ -45,7 +45,7 @@ export function Hoods({ overlap = false }: { overlap?: boolean }) {
   const [tal, psagot, nofarim, vatika, slaim] = hoods;
 
   return (
-    <section className={overlap ? `${s.section} ${s.overlap}` : s.section} ref={root} aria-labelledby="hoods-title">
+    <section id="neighborhoods" className={overlap ? `${s.section} ${s.overlap}` : s.section} ref={root} aria-labelledby="hoods-title">
       <div className={s.rowA}>
         <h2 id="hoods-title" className={s.title} data-r="up">
           <span className={s.first}>השכונות</span>
