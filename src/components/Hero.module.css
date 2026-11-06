@@ -2,7 +2,7 @@
    One screen tall. The photo canvas keeps the approved 1536×1024 design
    coordinates and covers the viewport from the top (--hs is set before
    first paint in layout.tsx: max(width / 1536, height / 1024)).
-   The dock (video card, line, search) is laid out on the screen itself.
+   The search dock is laid out on the screen itself.
 ------------------------------------------------------------------- */
 .viewport { position: relative; height: 100vh; height: 100svh; min-height: 600px; overflow: hidden; background: #a9c9e6; }
 .canvas {
@@ -42,25 +42,6 @@
 
 /* ---------- dock ---------- */
 .dock { position: absolute; z-index: 5; right: 3.4vw; left: 3.4vw; bottom: 0.9vw; display: grid; justify-items: stretch; }
-.above { display: flex; align-items: flex-end; justify-content: space-between; gap: 2vw; margin-bottom: 1.1vw; font-family: var(--font-heebo), sans-serif; font-stretch: 100%; }
-.tagline { margin: 0 0 0.2vw; color: #fff; font-size: max(17px, 1.37vw); font-weight: 500; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); }
-.media { display: flex; align-items: flex-end; gap: 1.3vw; }
-
-.reel {
-  position: relative; width: 16.2vw; height: 8.5vw; min-width: 200px; min-height: 104px; padding: 0; border: 2px solid #fff; border-radius: 14px;
-  overflow: hidden; background: #333; cursor: pointer; color: #fff; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.55);
-  transition: box-shadow 0.25s;
-}
-.reel:hover { box-shadow: 0 20px 36px -14px rgba(0, 0, 0, 0.65); }
-.reelImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
-.reelShade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 55%); }
-.play { position: absolute; left: 1vw; bottom: 0.95vw; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: #111; display: grid; place-items: center; padding-left: 2px; transition: transform 0.2s; }
-.reel:hover .play { transform: scale(1.1); }
-.reelText { position: absolute; right: 0.9vw; bottom: 1.35vw; font-size: max(15px, 1.1vw); font-weight: 500; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4); }
-.counter { direction: ltr; display: grid; gap: 9px; margin-bottom: 0.6vw; color: #fff; font-size: 15px; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35); }
-.dashes { display: flex; gap: 4px; }
-.dashes i { width: 23px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.45); }
-.dashes i[data-on] { background: #fff; }
 
 /* search: Emerald double outline (white line, frosted white fill) */
 .search {
@@ -110,18 +91,6 @@
 .down svg { width: 50%; height: 50%; }
 .down:hover { background: #fff; color: var(--ink); }
 
-/* full-screen video */
-.dialog { width: 100vw; height: 100svh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(10, 10, 10, 0.96); color: #fff; direction: rtl; font-family: var(--font-heebo), sans-serif; font-stretch: 100%; }
-.dialog[open] { display: grid; grid-template-rows: 1fr auto; animation: fadein 0.3s ease; }
-.dialog::backdrop { background: transparent; }
-.figure { position: relative; margin: 24px; }
-.figure video, .figure iframe { position: absolute; inset: 0 0 44px; width: 100%; height: calc(100% - 44px); border: 0; object-fit: contain; background: #000; }
-.figure figcaption { position: absolute; bottom: 12px; right: 12px; padding: 6px 12px; border-radius: 10px; background: rgba(0, 0, 0, 0.55); font-size: 15px; }
-.dbar { display: flex; justify-content: space-between; align-items: center; padding: 0 24px 24px; }
-.dbar div { display: flex; gap: 8px; }
-.dbar button { width: 46px; height: 46px; border: 0; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #111; cursor: pointer; }
-@keyframes fadein { from { opacity: 0; } }
-
 /* ------------------------------------------------------------------
    Tablet & phone: the photo keeps the top of the screen with the word,
    the card and the search follow under it.
@@ -136,15 +105,6 @@
   .word { left: 0; top: calc(max(84px, 20vw) + 6vw); width: 100%; font-size: 27vw; letter-spacing: -1vw; }
   .pin { display: none; }
   .dock { position: relative; right: auto; left: auto; bottom: auto; margin-top: -76px; padding: 0 16px 24px; }
-  .above { margin-bottom: 16px; gap: 12px; }
-  .tagline { position: absolute; right: 16px; left: 16px; top: -46px; font-size: 18px; }
-  .media { width: 100%; justify-content: space-between; }
-  .reel { width: 210px; height: 112px; min-width: 0; min-height: 0; }
-  .play { left: 12px; bottom: 12px; }
-  .reelText { right: 12px; bottom: 19px; font-size: 15px; }
-  .counter { color: var(--ink); text-shadow: none; margin-bottom: 0; }
-  .dashes i { background: rgba(23, 48, 62, 0.18); }
-  .dashes i[data-on] { background: var(--ink); }
   .search { --c: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px)); --frame-line: var(--ink); --frame-fill: #fff; width: auto; margin: 0; padding: 16px 14px; }
   .searchHead { flex-direction: row; gap: 10px; margin-bottom: 12px; }
   .searchTitle { font-size: 19px; }
@@ -162,7 +122,4 @@
   .control svg { width: 14px; height: 14px; }
   .submit { justify-content: center; padding: 12px 18px; font-size: 17px; }
   .down { display: none; }
-}
-@media (max-width: 420px) {
-  .reel { width: 180px; height: 100px; }
 }

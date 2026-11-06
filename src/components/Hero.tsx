@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowDown, MapPin, Home, LayoutGrid, Wallet, ChevronDown, Play, Search, X } from 'lucide-react';
+import { ArrowLeft, ArrowDown, MapPin, Home, LayoutGrid, Wallet, ChevronDown, Search } from 'lucide-react';
 import { SITE } from '@/lib/content';
 import { kindLabels } from '@/lib/core';
 import { gsap, useGSAP } from '@/lib/gsap';
@@ -20,27 +20,15 @@ const fieldsFor = (areas: string[]) => [
   { id: 'rooms', icon: LayoutGrid, label: 'חדרים', options: [['all', 'לבחירתכם'], ['3', '3+ חדרים'], ['4', '4+ חדרים'], ['5', '5+ חדרים'], ['6', '6+ חדרים']] },
   { id: 'max', icon: Wallet, label: 'תקציב', options: [['all', 'ללא הגבלה'], ['2500000', 'עד 2.5 מיליון ₪'], ['3000000', 'עד 3 מיליון ₪'], ['4000000', 'עד 4 מיליון ₪'], ['6000000', 'עד 6 מיליון ₪']] },
 ];
-/** Three real videos published on afikeynadlan.co.il (behind "01 / 03"). Captions say what each one shows. */
-const videos = [
-  { kind: 'mp4' as const, src: '/media/video/psagot-afek-garden.mp4', id: '', caption: 'דירת גן בפסגות אפק B — מתוך מודעה באתר אפיקי נדל״ן' },
-  { kind: 'youtube' as const, src: '', id: 'HEYIIO90TKc', caption: '5 חדרים בפסגות אפק — סרטון מערוץ אפיקי נדל״ן' },
-  { kind: 'youtube' as const, src: '', id: 'ViJEXgE1l74', caption: 'מצפה אפק — סרטון מערוץ אפיקי נדל״ן' },
-];
-const pad = (n: number) => String(n).padStart(2, '0');
-
 /**
  * The approved hero image, fitted to one screen: the photo and everything pinned to it (the word, the kicker,
- * the Psagot Afek tag) sit on a 1536×1024 canvas that covers the viewport from the top; the video card, the line
- * and the search sit on the screen itself, above its bottom edge. The header is the shared site header.
+ * and the Psagot Afek tag) sit on a 1536×1024 canvas that covers the viewport from the top; the search sits on
+ * the screen itself, above its bottom edge. The header is the shared site header.
  */
 export function Hero({ areas }: { areas: string[] }) {
   const root = useRef<HTMLDivElement>(null);
   const fields = fieldsFor(areas);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const opener = useRef<HTMLButtonElement>(null);
   const [tab, setTab] = useState<(typeof tabs)[number]['id']>('sale');
-  const [video, setVideo] = useState(0);
-  const [open, setOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -57,8 +45,6 @@ export function Hero({ areas }: { areas: string[] }) {
     { scope: root },
   );
 
-  const go = (d: number) => setVideo((x) => (x + d + videos.length) % videos.length);
-  const v = videos[video];
   const sale = tab === 'sale';
 
   return (
@@ -78,28 +64,6 @@ export function Hero({ areas }: { areas: string[] }) {
       </div>
 
       <div className={s.dock}>
-        <div className={s.above}>
-          <p className={s.tagline} data-a="ui">הכתובת שלכם לבית בראש העין.</p>
-          <div className={s.media} data-a="ui">
-            <div className={s.counter} aria-hidden="true">
-              <span>{pad(video + 1)} / {pad(videos.length)}</span>
-              <span className={s.dashes}>{videos.map((x, i) => <i key={i} data-on={i === video || undefined} />)}</span>
-            </div>
-            <button
-              ref={opener}
-              className={s.reel}
-              onClick={() => { setOpen(true); dialog.current?.showModal(); }}
-              aria-label={`מבט על השכונה — ניגון סרטון ${video + 1} מתוך ${videos.length}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/media/hero/background-768.jpg" alt="" className={s.reelImg} />
-              <span className={s.reelShade} />
-              <span className={s.play}><Play size={17} fill="currentColor" aria-hidden /></span>
-              <span className={s.reelText}>מבט על השכונה</span>
-            </button>
-          </div>
-        </div>
-
         {/* Search, in the inner pages' language: double-outlined octagon over frosted glass, the type switch
             like the header links, the action as the octagon button. */}
         <form className={`${em.frame} ${s.search}`} role="search" aria-label="חיפוש נכסים" data-a="search"
@@ -133,36 +97,6 @@ export function Hero({ areas }: { areas: string[] }) {
         <a className={s.down} href="#featured-title" aria-label="גלילה לנכסים" data-a="ui"><ArrowDown strokeWidth={1.4} aria-hidden /></a>
       </div>
 
-      <dialog
-        ref={dialog}
-        className={s.dialog}
-        aria-label="מבט על השכונה — סרטונים"
-        onClose={() => { setOpen(false); opener.current?.focus(); }}
-        onClick={(e) => { if (e.target === dialog.current) dialog.current?.close(); }}
-      >
-        <figure className={s.figure}>
-          {open && (v.kind === 'mp4' ? (
-            <video key={v.src} src={v.src} controls autoPlay playsInline />
-          ) : (
-            <iframe
-              key={v.id}
-              src={`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`}
-              title={v.caption}
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          ))}
-          <figcaption>{v.caption}</figcaption>
-        </figure>
-        <div className={s.dbar}>
-          <span>{pad(video + 1)} / {pad(videos.length)}</span>
-          <div>
-            <button onClick={() => go(-1)}><ArrowRight size={18} aria-hidden /><span className="sr-only">הסרטון הקודם</span></button>
-            <button onClick={() => go(1)}><ArrowLeft size={18} aria-hidden /><span className="sr-only">הסרטון הבא</span></button>
-            <button onClick={() => dialog.current?.close()} autoFocus><X size={18} aria-hidden /><span className="sr-only">סגירה</span></button>
-          </div>
-        </div>
-      </dialog>
     </section>
   );
 }
