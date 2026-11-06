@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>סיור בדמו · אפיקי נדל״ן</title>
+<meta name="description" content="סרטונים קצרים מתוך הדמו של האתר החדש של אפיקי נדל״ן: הגלילה, מעברי העכבר והעמודים הפנימיים.">
+<link rel="icon" href="/media/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Same language as the demo and the PDF: white, petrol ink, one lime accent, Heebo light/bold pairs, chamfered frames. */
+:root {
+  --ink: #17303e; --ink-2: rgba(23,48,62,.74); --ink-3: rgba(23,48,62,.52); --rule: rgba(23,48,62,.16);
+  --lime: #c7d31b; --paper: #f4f3f0; --bg: #ffffff;
+  --sans: 'Heebo', system-ui, sans-serif; --serif: 'Frank Ruhl Libre', serif;
+  --gutter: max(16px, 5vw); --cut: 16px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 20px; padding: 12px var(--gutter); background: rgba(255,255,255,.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.bar img { height: 36px; display: block; }
+.bar .sp { flex: 1; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; background: var(--ink); color: #fff; text-decoration: none; font-size: 15px; font-weight: 500; padding: 10px 22px;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); transition: background-color .2s ease-out; }
+.btn:hover { background: #0d1f29; }
+.btn::after { content: '←'; transition: transform .2s ease-out; }
+.btn:hover::after { transform: translateX(-3px); }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); clip-path: none; }
+.btn.ghost:hover { background: var(--paper); }
+
+header.intro { padding: clamp(40px, 7vw, 96px) var(--gutter) clamp(28px, 4vw, 48px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: end; max-width: 1440px; margin: 0 auto; }
+.kicker { font-family: var(--serif); color: var(--ink-3); font-size: 17px; display: flex; align-items: center; gap: 12px; }
+.kicker::after { content: ''; width: 8px; height: 8px; background: var(--lime); transform: rotate(45deg); }
+h1 { font-size: clamp(38px, 5.2vw, 76px); line-height: 1.02; font-weight: 300; letter-spacing: -.02em; margin: 14px 0 0; }
+h1 b { font-weight: 800; display: block; }
+.lede { color: var(--ink-2); max-width: 60ch; margin: 0; }
+.desk { margin-top: 18px; padding: 14px 18px; background: var(--paper); font-weight: 500; }
+.intro .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+nav.toc { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter) 24px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; counter-reset: c; }
+nav.toc li { counter-increment: c; border-top: 1px solid var(--rule); }
+nav.toc a { display: flex; gap: 14px; padding: 10px 0; text-decoration: none; font-size: 16px; transition: color .2s; }
+nav.toc a::before { content: counter(c, decimal-leading-zero); font-family: var(--serif); color: var(--ink-3); min-width: 24px; }
+nav.toc a:hover { color: #000; }
+nav.toc a:hover::before { color: var(--ink); }
+.group { font-family: var(--serif); color: var(--ink-3); font-size: 15px; margin: 18px 0 6px; }
+
+main { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter) 96px; }
+.part { font-family: var(--serif); font-size: 18px; color: var(--ink-3); display: flex; align-items: center; gap: 14px; margin: 72px 0 8px; }
+.part::before { content: ''; width: 8px; height: 8px; background: var(--lime); transform: rotate(45deg); }
+.part::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.clip { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); padding: 40px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+.clip:last-child { border-bottom: 0; }
+.clip h2 { font-size: clamp(26px, 2.4vw, 34px); line-height: 1.1; font-weight: 300; margin: 0 0 12px; }
+.clip h2 b { font-weight: 700; }
+.clip p { margin: 0; color: var(--ink-2); }
+.clip .try { display: flex; gap: 10px; align-items: baseline; margin-top: 14px; color: var(--ink); font-weight: 500; font-size: 16px; }
+.clip .try::before { content: ''; width: 8px; height: 8px; background: var(--lime); transform: rotate(45deg) translateY(-1px); flex: none; }
+.clip .btn { margin-top: 20px; }
+.clip .len { display: block; margin-top: 14px; font-size: 13px; color: var(--ink-3); }
+.frame { position: relative; background: var(--paper); aspect-ratio: 16 / 10;
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut)); }
+.frame video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--paper); }
+
+footer { border-top: 1px solid var(--rule); padding: 40px var(--gutter); display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; max-width: 1440px; margin: 0 auto; color: var(--ink-3); font-size: 15px; }
+
+@media (max-width: 900px) {
+  header.intro, .clip { grid-template-columns: 1fr; gap: 20px; }
+  nav.toc ol { grid-template-columns: 1fr; }
+  .bar .btn.ghost { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <img src="/tour/logo.png" alt="אפיקי נדל״ן">
+  <span class="sp"></span>
+  <a class="btn ghost" href="https://afiki-nadln.vercel.app/">לדמו</a>
+</div>
+
+<header class="intro">
+  <div>
+    <p class="kicker">סיור בדמו</p>
+    <h1>אפיקי נדל״ן — <b>מבט ראשון באתר החדש</b></h1>
+  </div>
+  <div>
+    <p class="lede">כאן רואים את התנועה שה־PDF לא יכול להראות: הגלילה, מעברי העכבר, הגלריות והתפריטים. כל סרטון הוקלט מתוך הדמו עצמו, בלי סאונד, ולצידו קישור לאותו מקום בדמו.</p>
+    <p class="desk">הדמו מיועד כרגע לצפייה במחשב. גרסת המובייל עדיין לא נבנתה.</p>
+    <div class="btns"><a class="btn" href="https://afiki-nadln.vercel.app/">לפתיחת הדמו</a></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="תוכן העמוד">
+  <p class="group">דף הבית, לפי סדר הגלילה</p>
+  <ol>
+    <li><a href="#hero">פתיחה ותפריט עליון</a></li>
+    <li><a href="#cards">כרטיסי הנכסים</a></li>
+    <li><a href="#sold-sell">נכסים שמכרנו ומוכרים נכס?</a></li>
+    <li><a href="#about-hoods">מי אנחנו והשכונות</a></li>
+    <li><a href="#flight">טיסה מעל פסגות אפק</a></li>
+    <li><a href="#services">איך אפשר לעזור לכם?</a></li>
+    <li><a href="#reviews">המלצות</a></li>
+    <li><a href="#calculator">המחשבון הצף</a></li>
+    <li><a href="#popup">חלון הערכת השווי</a></li>
+  </ol>
+  <p class="group">עמודים פנימיים</p>
+  <ol>
+    <li><a href="#properties">נכסים למכירה וסינון</a></li>
+    <li><a href="#property">עמוד נכס: גלריה ומחשבון</a></li>
+    <li><a href="#hood-page">עמוד שכונה</a></li>
+    <li><a href="#about">אודות</a></li>
+    <li><a href="#sell">מוכרים נכס?</a></li>
+    <li><a href="#faq">שאלות ותשובות</a></li>
+  </ol>
+</nav>
+
+<main>
+  <p class="part">דף הבית</p>
+
+  <section class="clip" id="hero">
+    <div>
+      <h2>פתיחה <b>ותפריט עליון</b></h2>
+      <p>הצילום נטען, ״העתיד״ מתבהר ותיבת החיפוש עולה. בגלילה התפריט מקבל רקע לבן, ובמעבר עכבר נפתחים תפריטי המשנה.</p>
+      <p class="try">רעננו את דף הבית והעבירו את העכבר על ״נכסים למכירה״.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/">לפתיחת דף הבית</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/01-hero.jpg" aria-label="סרטון: הפתיחה של דף הבית והתפריט העליון"><source src="/tour/media/01-hero.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="cards">
+    <div>
+      <h2>כרטיסי <b>הנכסים</b></h2>
+      <p>מעבר עכבר מטשטש את הצילום, מציג את הלוגו ופותח שורה עם המחיר, החדרים והשטח. אותו כרטיס חוזר בכל האתר.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#featured">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/02-cards.jpg" aria-label="סרטון: מעבר עכבר על כרטיסי הנכסים"><source src="/tour/media/02-cards.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="sold-sell">
+    <div>
+      <h2>נכסים שמכרנו, <b>ומוכרים נכס?</b></h2>
+      <p>שורת הנכסים שנמכרו נעה לצדדים ונעצרת מתחת לעכבר. מיד אחריה התיבה הכהה נפתחת מהצד והטקסט עולה בתוכה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#sold">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/03-sold-sell.jpg" aria-label="סרטון: שורת הנכסים שנמכרו והרצועה למוכרים"><source src="/tour/media/03-sold-sell.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="about-hoods">
+    <div>
+      <h2>מי אנחנו <b>והשכונות</b></h2>
+      <p>המספרים סופרים מאפס כשהם נכנסים למסך. בכרטיסי השכונות המסגרת נפתחת, הצילום זז מעט עם העכבר ושורת תיאור נחשפת.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#neighborhoods">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/04-about-hoods.jpg" aria-label="סרטון: המספרים במי אנחנו וכרטיסי השכונות"><source src="/tour/media/04-about-hoods.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="flight">
+    <div>
+      <h2>טיסה <b>מעל פסגות אפק</b></h2>
+      <p>המסך נעצר והגלילה מזיזה את המצלמה בין שישה צילומי רחפן מהגלריה שלכם, עד הרחוב. בסוף מופיעים כפתורים לנכסים בשכונה.</p>
+      <p class="try">גללו לאט, והמונה בתחתית יתקדם מ־01 עד 06.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#drone-flight">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/05-flight.jpg" aria-label="סרטון: גלילה בטיסה מעל פסגות אפק"><source src="/tour/media/05-flight.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="services">
+    <div>
+      <h2>איך אפשר <b>לעזור לכם?</b></h2>
+      <p>הרצועה שמתחת לעכבר מתרחבת, הצילום מטשטש ומתכהה והטקסט עולה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#services">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/06-services.jpg" aria-label="סרטון: מעבר עכבר על שלוש הרצועות"><source src="/tour/media/06-services.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="reviews">
+    <div>
+      <h2>המלצות</h2>
+      <p>כל המלצה נכנסת מילה אחרי מילה. מחליפים בחצים או בלחיצה על שם הממליץ.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#reviews">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/07-reviews.jpg" aria-label="סרטון: החלפת המלצות"><source src="/tour/media/07-reviews.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="calculator">
+    <div>
+      <h2>המחשבון <b>הצף</b></h2>
+      <p>הכפתור ״כמה זה יעלה לי בחודש?״ פותח מחשבון משכנתא בצד המסך. כל גרירה מעדכנת את ההחזר החודשי.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/#featured">לנסות את המחשבון</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/08-fab.jpg" aria-label="סרטון: פתיחת המחשבון הצף"><source src="/tour/media/08-fab.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="popup">
+    <div>
+      <h2>הערכת <b>שווי חינם</b></h2>
+      <p>חלון שמופיע פעם ביום, אחרי שגוללים כרבע מדף הבית. סוגרים בכפתור, ב־Esc או בלחיצה מחוץ לחלון.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/">לדף הבית</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/09-popup.jpg" aria-label="סרטון: חלון הערכת השווי"><source src="/tour/media/09-popup.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <p class="part">עמודים פנימיים</p>
+
+  <section class="clip" id="properties">
+    <div>
+      <h2>נכסים <b>למכירה</b></h2>
+      <p>בפתיחה טורי צילומים בתנועה. מתחתם הסינון: לחיצה על סוג נכס מעדכנת מיד את הכרטיסים ואת המונה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/properties#all">לנסות את הסינון</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/10-properties.jpg" aria-label="סרטון: עמוד הנכסים והסינון"><source src="/tour/media/10-properties.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="property">
+    <div>
+      <h2>עמוד נכס: <b>גלריה ומחשבון</b></h2>
+      <p>דפדוף בגלריה בחצים, ומחשבון שכבר מוזן במחיר הנכס. גרירת המחוון משנה את ההחזר החודשי.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/properties/9237#gallery">לפתיחת הנכס</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/11-property.jpg" aria-label="סרטון: גלריה ומחשבון בעמוד נכס"><source src="/tour/media/11-property.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="hood-page">
+    <div>
+      <h2>עמוד <b>שכונה</b></h2>
+      <p>טווחי המחירים מופיעים, ואז ב״מה חשוב לדעת״ המסך נעצר: השלבים זזים לרוחב והצילום נחשף מלמטה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/neighborhoods/psagot-afek#steps">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/12-hood-page.jpg" aria-label="סרטון: גלילה בעמוד השכונה"><source src="/tour/media/12-hood-page.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="about">
+    <div>
+      <h2>אודות</h2>
+      <p>חמש התמונות בפתיחה זזות עם העכבר, כל אחת במהירות ובכיוון משלה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/about">לעמוד אודות</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/13-about.jpg" aria-label="סרטון: התמונות בעמוד אודות זזות עם העכבר"><source src="/tour/media/13-about.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="sell">
+    <div>
+      <h2>מוכרים <b>נכס?</b></h2>
+      <p>״איך מוכרים איתנו״ באותו מנגנון של עמוד השכונה: השלבים זזים לרוחב בזמן הגלילה.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/sell#steps">לצפייה בסקשן</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/15-sell-steps.jpg" aria-label="סרטון: השלבים בעמוד מוכרים נכס"><source src="/tour/media/15-sell-steps.mp4" type="video/mp4"></video></div>
+  </section>
+
+  <section class="clip" id="faq">
+    <div>
+      <h2>שאלות <b>ותשובות</b></h2>
+      <p>לחיצה על שאלה פותחת את התשובה מתחתיה, והפלוס הופך לאיקס.</p>
+      <a class="btn" href="https://afiki-nadln.vercel.app/faq#questions">לעמוד השאלות</a>
+    </div>
+    <div class="frame"><video controls muted playsinline preload="none" poster="/tour/media/14-faq.jpg" aria-label="סרטון: פתיחת שאלות"><source src="/tour/media/14-faq.mp4" type="video/mp4"></video></div>
+  </section>
+</main>
+
+<footer>
+  <span>הדגמה ראשונית להתרשמות · מומלץ לפתוח במחשב</span>
+  <a class="btn" href="https://afiki-nadln.vercel.app/">לפתיחת הדמו</a>
+</footer>
+
+<script>
+  // one clip at a time: starting a video pauses the others
+  document.querySelectorAll('video').forEach((v) => v.addEventListener('play', () => {
+    document.querySelectorAll('video').forEach((o) => { if (o !== v) o.pause(); });
+  }));
+</script>
+</body>
+</html>
