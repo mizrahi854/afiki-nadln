@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 /**
@@ -8,12 +9,12 @@ import type { ReactNode } from 'react';
  */
 export function ContactLink({ children, className, onClick }: { children: ReactNode; className?: string; onClick?: () => void }) {
   return (
-    <a href="/#talk-title" className={className} onClick={(e) => {
+    <Link href="/#talk-title" className={className} onClick={(e) => {
       onClick?.();
       const el = document.getElementById('talk-title');
       if (!el) return;
       e.preventDefault();
       el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
-    }}>{children}</a>
+    }}>{children}</Link>
   );
 }
